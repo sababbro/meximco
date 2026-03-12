@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact | MEXIMCO — Value Across the Mushroom Ecosystem</title>
+    <meta name="description" content="Discover how MEXIMCO creates measurable value for farmers, buyers, and Bangladesh's mushroom industry through supply chain innovation and quality control.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="logo.png" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+</head>
+<body>
+
+    <canvas id="psychedelic-canvas"></canvas>
+    <div id="scroll-progress"></div>
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="custom-cursor-trail" id="cursor-trail-dot"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img loading="lazy" src="logo.png" alt="MEXIMCO Logo" class="logo-img">
+                <div class="nav-brand-text">
+                    <span class="brand-name">MEXIMCO</span>
+                    <span class="brand-sub">Mushroom Import Export<br>Company Limited</span>
+                </div>
+            </a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html#about" class="nav-link" data-page="index">About</a></li>
+                <li><a href="products.html" class="nav-link" data-page="products">Products</a></li>
+                <li><a href="impact.html" class="nav-link" data-page="impact">Impact</a></li>
+                <li><a href="vision.html" class="nav-link" data-page="vision">Vision</a></li>
+                <li><a href="contact.html#inquiry" class="nav-link" data-page="contact">Export Inquiry</a></li>
+                <li><a href="contact.html" class="nav-link nav-link-cta" data-page="contact">Request a Quote</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Hero Banner -->
+    <section class="page-hero" id="page-hero" style="background-image: linear-gradient(rgba(0,0,0,0.70),rgba(0,0,0,0.70)), url('icons/Farmers.png'); background-size:cover; background-position:center; background-color:#111;">
+        <div class="page-hero-content">
+            <span class="section-label">Our Impact</span>
+            <h1 class="page-hero-title">Creating Value Across the Ecosystem</h1>
+            <p class="page-hero-sub">For Farmers · For Buyers · For Bangladesh</p>
+        </div>
+    </section>
+
+    <!-- Smart Logistics Section -->
+    <section class="section section-dark" id="logistics">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">Supply Chain</span>
+                <h2 class="section-title">Powering Efficient Supply Chains</h2>
+            </div>
+            <div class="logistics-grid">
+                <div class="logistics-card animate-on-scroll">
+                    <div class="logistics-icon">
+                        <img loading="lazy" src="icons/Buffer Stock.png" alt="Buffer Stock"
+                            style="width: 40px; height: 40px; object-fit: contain; filter: brightness(0) invert(1);">
+                    </div>
+                    <h3>Buffer Stock</h3>
+                    <p>We maintain strategic inventory to absorb demand surges and cushion against supply disruptions.</p>
+                </div>
+                <div class="logistics-card animate-on-scroll">
+                    <div class="logistics-icon">
+                        <img loading="lazy" src="icons/smart conversion.png" alt="Smart Conversion"
+                            style="width: 40px; height: 40px; object-fit: contain; filter: brightness(0) invert(1);">
+                    </div>
+                    <h3>Smart Conversion</h3>
+                    <p>Surplus fresh harvests are quickly processed into shelf-stable dried and powdered forms to eliminate waste.</p>
+                </div>
+                <div class="logistics-card animate-on-scroll">
+                    <div class="logistics-icon">
+                        <img loading="lazy" src="icons/Quick Release.png" alt="Quick Release"
+                            style="width: 40px; height: 40px; object-fit: contain; filter: brightness(0) invert(1);">
+                    </div>
+                    <h3>Quick Release</h3>
+                    <p>Rapid deployment capabilities keep shelves stocked and customers satisfied year-round.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="section section-light" id="impact">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">Our Impact</span>
+                <h2 class="section-title">Creating Value Across the Entire Ecosystem</h2>
+            </div>
+            <div class="impact-grid">
+                <div class="impact-card animate-on-scroll">
+                    <div class="impact-header">
+                        <h3>For Farmers</h3>
+                        <div class="impact-icon-geo"><svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                                <path d="M14 4v20M7 10l7-6 7 6M4 24h20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                            </svg></div>
+                    </div>
+                    <div class="impact-chart-wrap">
+                        <canvas id="farmersChart" height="160"></canvas>
+                    </div>
+                    <ul class="impact-list">
+                        <li>Guaranteed purchasing at fair, transparent prices.</li>
+                        <li>Dramatically reduced losses from spoilage and waste.</li>
+                        <li>2-3&times; earnings boost through organized farmer clusters.</li>
+                    </ul>
+                </div>
+                <div class="impact-card animate-on-scroll">
+                    <div class="impact-header">
+                        <h3>For Buyers</h3>
+                        <div class="impact-icon-geo"><svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                                <rect x="3" y="3" width="22" height="22" rx="4" stroke="currentColor" stroke-width="1.5" />
+                                <path d="M3 10h22M10 10v15" stroke="currentColor" stroke-width="1.5" />
+                            </svg></div>
+                    </div>
+                    <div class="impact-chart-wrap">
+                        <canvas id="buyersChart" height="160"></canvas>
+                    </div>
+                    <ul class="impact-list">
+                        <li>Consistent taste, texture, and quality in every batch.</li>
+                        <li>Reliable, year-round supply with no seasonal gaps.</li>
+                        <li>Complete safety documentation and full traceability.</li>
+                    </ul>
+                </div>
+                <div class="impact-card animate-on-scroll">
+                    <div class="impact-header">
+                        <h3>Strategic Impact</h3>
+                        <div class="impact-icon-geo"><svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                                <polyline points="4,22 10,14 16,18 24,6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none" />
+                                <polyline points="18,6 24,6 24,12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none" />
+                            </svg></div>
+                    </div>
+                    <div class="impact-chart-wrap">
+                        <canvas id="growthChart" height="160"></canvas>
+                    </div>
+                    <ul class="impact-list">
+                        <li>Enabling the mushroom sector to scale safely nationwide.</li>
+                        <li>Creating jobs while driving sustainability and export growth.</li>
+                        <li>Building Bangladesh's first organized, premium mushroom industry.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="nav-logo" style="margin-bottom: 24px; pointer-events: none;">
+                        <img src="logo.png" alt="MEXIMCO" class="footer-logo" loading="lazy">
+                        <div class="nav-brand-text">
+                            <span class="brand-name">MEXIMCO</span>
+                            <span class="brand-sub">A Mushroom Export Import<br>Company Limited</span>
+                        </div>
+                    </div>
+                    <p>Transforming mushrooms into trusted nutrition. Bangladesh's premier mushroom processing company.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="vision.html#ecosystem">Our Role</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="impact.html">Our Impact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="vision.html">Vision & Roadmap</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p>JK Tower 31, Shegunbagicha,<br>Ramna, Dhaka - 1000</p>
+                    <p><a href="tel:+8801321147011">+880 1321 147 011</a></p>
+                    <p><a href="mailto:contact@meximcoltd.com">contact@meximcoltd.com</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MEXIMCO — Mushroom Import Export Company Limited. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/8801321147011" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

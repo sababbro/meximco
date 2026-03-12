@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -59,7 +59,7 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#hero" class="nav-logo">
+            <a href="index.html" class="nav-logo">
                 <img loading="lazy" src="logo.png" alt="MEXIMCO Logo" class="logo-img">
                 <div class="nav-brand-text">
                     <span class="brand-name">MEXIMCO</span>
@@ -72,12 +72,12 @@
                 <span class="hamburger-line"></span>
             </button>
             <ul class="nav-links" id="nav-links">
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#products" class="nav-link">Products</a></li>
-                <li><a href="#impact" class="nav-link">Impact</a></li>
-                <li><a href="#future" class="nav-link">Vision</a></li>
-                <li><a href="#inquiry" class="nav-link">Export Inquiry</a></li>
-                <li><a href="#contact" class="nav-link nav-link-cta">Request a Quote</a></li>
+                <li><a href="index.html#about" class="nav-link" data-page="index">About</a></li>
+                <li><a href="products.html" class="nav-link" data-page="products">Products</a></li>
+                <li><a href="impact.html" class="nav-link" data-page="impact">Impact</a></li>
+                <li><a href="vision.html" class="nav-link" data-page="vision">Vision</a></li>
+                <li><a href="contact.html#inquiry" class="nav-link" data-page="contact">Export Inquiry</a></li>
+                <li><a href="contact.html" class="nav-link nav-link-cta" data-page="contact">Request a Quote</a></li>
             </ul>
         </div>
     </nav>
@@ -86,26 +86,26 @@
     <section class="hero" id="hero">
         <div class="hero-bg-pattern"></div>
         <div class="hero-content">
-            <div class="hero-badge animate-on-scroll">
+            <div class="hero-badge">
                 <span class="badge-dot"></span>
                 Founded June 2025 &bull; Dhaka, Bangladesh
             </div>
-            <h1 class="hero-title animate-on-scroll">
+            <h1 class="hero-title">
                 <span class="title-line">Transforming</span>
                 <span class="title-line">Mushrooms into</span>
                 <span class="title-line title-accent">Trusted Nutrition.</span>
             </h1>
-            <p class="hero-subtitle animate-on-scroll">
+            <p class="hero-subtitle">
                 We stabilize, standardize, and process mushrooms turning an unpredictable farm product into a
                 dependable ingredient for everyday health, cuisine, and export.
             </p>
-            <div class="hero-cta-group animate-on-scroll">
-                <a href="#inquiry" class="btn btn-secondary magnetic-btn">Request a Quote</a>
-                <a href="#contact" class="btn btn-ghost magnetic-btn">Contact Us</a>
+            <div class="hero-cta-group">
+                <a href="contact.html#inquiry" class="btn btn-secondary magnetic-btn">Request a Quote</a>
+                <a href="contact.html" class="btn btn-ghost magnetic-btn">Contact Us</a>
             </div>
         </div>
         <!-- Hero Visual Showcase -->
-        <div class="hero-visual animate-on-scroll">
+        <div class="hero-visual">
             <div class="hero-showcase-card">
                 <div class="showcase-icon">
                     <img loading="lazy" src="icons/premium mushroom products.png" alt="Premium Mushroom Products"
@@ -124,29 +124,32 @@
             </div>
             <div class="hero-showcase-card">
                 <div class="showcase-icon">
-                    <img loading="lazy" src="icons/scales.png" alt="Export-Ready Quality"
+                    <img loading="lazy" src="icons/export certification.png" alt="Export-Ready Quality"
                         style="width: 48px; height: 48px; object-fit: contain; filter: brightness(0) invert(1);">
                 </div>
                 <span class="showcase-label">Export-Ready Quality</span>
                 <span class="showcase-stat">Global Standards</span>
             </div>
         </div>
-        <div class="hero-scroll-indicator animate-on-scroll">
-            <div class="scroll-line"></div>
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
             <span>Scroll to explore</span>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="section section-dark" id="about">
+    <section class="section" id="about">
         <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">Who We Are</span>
-                <h2 class="section-title">Building a Strong Foundation for Bangladesh's Mushroom Industry</h2>
-            </div>
-            <div class="about-grid">
+            <div class="about-content">
+                <div class="section-header animate-on-scroll">
+                    <span class="section-label">Who We Are</span>
+                    <h2 class="section-title">Building a Strong Foundation for Bangladesh's Mushroom Industry</h2>
+                </div>
                 <div class="about-text animate-on-scroll">
-                    <p class="text-large">MEXIMCO addresses a critical need in Bangladesh's mushroom sector: centralized
+                    <p>MEXIMCO addresses a critical need in Bangladesh's mushroom sector: centralized
                         processing and rigorous quality control.</p>
                     <p>By acting as a stabilizing hub, we solve challenges like short shelf life, inconsistent quality,
                         and price volatility. We process mushrooms from partner farms into market-ready forms
@@ -227,697 +230,31 @@
         </div>
     </section>
 
-    <!-- Future Section Cinematic Space Rocket Journey -->
-    <section class="section future-vision-section" id="future">
+    <!-- Page CTA Strip -->
+    <section class="page-nav-strip">
         <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">Mission Control</span>
-                <h2 class="section-title gradient-heading">Our Journey to the Stars</h2>
-                <p class="rocket-hint animate-on-scroll">Click any mission phase to explore the details</p>
+            <div class="page-nav-strip-inner">
+                <a href="products.html" class="page-nav-card">
+                    <span class="pnc-label">Our Products</span>
+                    <span class="pnc-desc">Shiitake · Reishi · Lion's Mane · Wood Ear</span>
+                    <span class="pnc-arrow">→</span>
+                </a>
+                <a href="impact.html" class="page-nav-card">
+                    <span class="pnc-label">Our Impact</span>
+                    <span class="pnc-desc">Farmers · Buyers · Supply Chain</span>
+                    <span class="pnc-arrow">→</span>
+                </a>
+                <a href="vision.html" class="page-nav-card">
+                    <span class="pnc-label">Our Vision</span>
+                    <span class="pnc-desc">Rocket Roadmap · Ecosystem</span>
+                    <span class="pnc-arrow">→</span>
+                </a>
+                <a href="team.html" class="page-nav-card">
+                    <span class="pnc-label">Our Team</span>
+                    <span class="pnc-desc">Meet the people behind MEXIMCO</span>
+                    <span class="pnc-arrow">→</span>
+                </a>
             </div>
-        </div>
-
-        <!-- Space scene canvas for stars -->
-        <canvas id="starfield-canvas" aria-hidden="true"></canvas>
-
-        <!-- Rocket roadmap -->
-        <div class="rocket-roadmap" id="rocket-roadmap">
-            <svg id="roadmap-svg" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet">
-
-                <!-- Animated orbital glow path (background) -->
-                <path id="orbital-glow" d="M80,540 C200,480 250,380 400,300 C550,220 650,160 920,60" fill="none"
-                    stroke="url(#pathGradient)" stroke-width="6" opacity="0.2" filter="url(#glow)" />
-                <!-- Dashed flight path -->
-                <path id="flight-path" d="M80,540 C200,480 250,380 400,300 C550,220 650,160 920,60" fill="none"
-                    stroke="rgba(255,255,255,0.12)" stroke-dasharray="10,8" stroke-width="2" />
-                <!-- Progress path (fills as rocket advances) -->
-                <path id="flight-path-done" d="M80,540 C200,480 250,380 400,300 C550,220 650,160 920,60" fill="none"
-                    stroke="url(#pathGradient)" stroke-width="3" stroke-dasharray="1500" stroke-dashoffset="1500"
-                    style="transition: stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1);" />
-
-                <!-- SVG defs -->
-                <defs>
-                    <linearGradient id="pathGradient" x1="0%" y1="100%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#FAFAFA" />
-                        <stop offset="33%" stop-color="#E0E0E0" />
-                        <stop offset="66%" stop-color="#9E9E9E" />
-                        <stop offset="100%" stop-color="#616161" />
-                    </linearGradient>
-                    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
-                        <feMerge>
-                            <feMergeNode in="blur" />
-                            <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                    </filter>
-                    <filter id="orbGlow" x="-100%" y="-100%" width="300%" height="300%">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
-                        <feMerge>
-                            <feMergeNode in="blur" />
-                            <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                    </filter>
-                    <radialGradient id="orb0" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stop-color="#FAFAFA" />
-                        <stop offset="100%" stop-color="#9E9E9E" />
-                    </radialGradient>
-                    <radialGradient id="orb1" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stop-color="#E0E0E0" />
-                        <stop offset="100%" stop-color="#757575" />
-                    </radialGradient>
-                    <radialGradient id="orb2" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stop-color="#BDBDBD" />
-                        <stop offset="100%" stop-color="#616161" />
-                    </radialGradient>
-                    <radialGradient id="orb3" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stop-color="#9E9E9E" />
-                        <stop offset="100%" stop-color="#424242" />
-                    </radialGradient>
-                </defs>
-
-                <!-- Phase 1 Orb Prototype -->
-                <g class="phase-node" data-phase="0" style="cursor:pointer;">
-                    <circle cx="80" cy="540" r="56" fill="url(#orb0)" opacity="0.15" class="node-ring" />
-                    <circle cx="80" cy="540" r="28" fill="url(#orb0)" filter="url(#orbGlow)" class="node-dot" />
-                    <text x="80" y="548" text-anchor="middle" font-size="20" fill="white" font-weight="700">I</text>
-                </g>
-                <!-- Phase 2 Orb Mid-Scale -->
-                <g class="phase-node" data-phase="1" style="cursor:pointer;">
-                    <circle cx="340" cy="330" r="56" fill="url(#orb1)" opacity="0.15" class="node-ring" />
-                    <circle cx="340" cy="330" r="28" fill="url(#orb1)" filter="url(#orbGlow)" class="node-dot" />
-                    <text x="340" y="338" text-anchor="middle" font-size="20" fill="white" font-weight="700">II</text>
-                </g>
-                <!-- Phase 3 Orb Regional -->
-                <g class="phase-node" data-phase="2" style="cursor:pointer;">
-                    <circle cx="600" cy="210" r="56" fill="url(#orb2)" opacity="0.15" class="node-ring" />
-                    <circle cx="600" cy="210" r="28" fill="url(#orb2)" filter="url(#orbGlow)" class="node-dot" />
-                    <text x="600" y="218" text-anchor="middle" font-size="20" fill="white" font-weight="700">III</text>
-                </g>
-                <!-- Phase 4 Orb Global -->
-                <g class="phase-node" data-phase="3" style="cursor:pointer;">
-                    <circle cx="920" cy="60" r="68" fill="url(#orb3)" opacity="0.15" class="node-ring" />
-                    <circle cx="920" cy="60" r="32" fill="url(#orb3)" filter="url(#orbGlow)" class="node-dot" />
-                    <text x="920" y="68" text-anchor="middle" font-size="20" fill="white" font-weight="700">IV</text>
-                </g>
-            </svg>
-
-            <!-- Rocket with flame -->
-            <div id="rocket-icon" aria-hidden="true" style="transform: rotate(90deg);">
-                <div class="rocket-flame" id="rocket-flame" style="left: -20px;"></div>
-                <img loading="lazy" src="icons/rocket.png" alt="Rocket"
-                    style="width: 52px; height: 52px; object-fit: contain; transform: rotate(45deg);">
-            </div>
-
-            <!-- Phase labels (name only, no year) -->
-            <div class="phase-label orb-label" data-phase="0" style="left:5%;top:82%">
-                <span class="orb-phase-name">Prototype</span>
-                <span class="orb-phase-sub">Dhaka HQ</span>
-            </div>
-            <div class="phase-label orb-label" data-phase="1" style="left:31%;top:42%">
-                <span class="orb-phase-name">Mid-Scale</span>
-                <span class="orb-phase-sub">20K sq ft</span>
-            </div>
-            <div class="phase-label orb-label" data-phase="2" style="left:57%;top:22%">
-                <span class="orb-phase-name">Regional</span>
-                <span class="orb-phase-sub">5 Divisions</span>
-            </div>
-            <div class="phase-label orb-label" data-phase="3" style="left:80%;top:1%">
-                <span class="orb-phase-name">Global</span>
-                <span class="orb-phase-sub">World Export</span>
-            </div>
-
-            <!-- Phase detail glassmorphism popup -->
-            <div id="phase-detail" class="phase-detail" aria-live="polite">
-                <button class="phase-detail-close" id="phase-detail-close" aria-label="Close">&times;</button>
-                <div class="phase-detail-inner" id="phase-detail-inner"></div>
-            </div>
-
-            <!-- Mission control nav bar -->
-            <div class="rocket-controls">
-                <button class="rocket-btn" id="rocket-prev" aria-label="Previous phase">
-                    <i data-lucide="chevron-left"></i>
-                </button>
-                <div class="rocket-phase-dots">
-                    <span class="rocket-phase-pip active" data-phase="0"></span>
-                    <span class="rocket-phase-pip" data-phase="1"></span>
-                    <span class="rocket-phase-pip" data-phase="2"></span>
-                    <span class="rocket-phase-pip" data-phase="3"></span>
-                </div>
-                <button class="rocket-btn" id="rocket-next" aria-label="Next phase">
-                    <i data-lucide="chevron-right"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Role Section (redesigned as modern grid cards) -->
-    <section class="section section-light" id="ecosystem">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">Our Role</span>
-                <h2 class="section-title">The Stabilizing Force in Mushroom Production</h2>
-            </div>
-            <p class="section-subtitle animate-on-scroll">MEXIMCO transforms a fragile agricultural product into a
-                traceable, scalable, globally-ready supply chain.</p>
-            <div class="our-role-container animate-on-scroll">
-                <div class="role-card">
-                    <div class="role-card-icon">
-                        <img loading="lazy" src="icons/Farmers.png" alt="Farmers"
-                            style="width: 40px; height: 40px; object-fit: contain; filter: brightness(0) invert(1);">
-                    </div>
-                    <h3>Farmers</h3>
-                    <p>We partner with trusted mushroom farmers across Bangladesh, providing guaranteed purchase
-                        agreements and technical support to ensure consistent, high-quality harvests at fair prices.</p>
-                </div>
-                <div class="role-card">
-                    <div class="role-card-icon">
-                        <img loading="lazy" src="icons/MEXIMCO Hub.png" alt="MEXIMCO Hub"
-                            style="width: 40px; height: 40px; object-fit: contain; filter: brightness(0) invert(1);">
-                    </div>
-                    <h3>MEXIMCO Hub</h3>
-                    <p>As the central processor, we stabilize raw mushrooms into premium, shelf-ready products,
-                        eliminating spoilage and price volatility.</p>
-                </div>
-                <div class="role-card">
-                    <div class="role-card-icon">
-                        <img loading="lazy" src="icons/Researchers.png" alt="Researchers"
-                            style="width: 40px; height: 40px; object-fit: contain; filter: brightness(0) invert(1);">
-                    </div>
-                    <h3>Researchers</h3>
-                    <p>We collaborate with leading mycology institutions to continuously advance cultivation techniques,
-                        improving yields, post-harvest handling, and contamination prevention through science.</p>
-                </div>
-                <div class="role-card">
-                    <div class="role-card-icon">
-                        <img loading="lazy" src="icons/Logistics.png" alt="Logistics"
-                            style="width: 40px; height: 40px; object-fit: contain; filter: brightness(0) invert(1);">
-                    </div>
-                    <h3>Logistics</h3>
-                    <p>Smart routing and real-time demand data allow us to efficiently coordinate transport and storage,
-                        ensuring zero bottlenecks from farm collection to final delivery.</p>
-                </div>
-                <div class="role-card">
-                    <div class="role-card-icon">
-                        <img loading="lazy" src="icons/market.png" alt="Markets"
-                            style="width: 40px; height: 40px; object-fit: contain; filter: brightness(0) invert(1);">
-                    </div>
-                    <h3>Markets</h3>
-                    <p>We deliver premium, traceable mushroom products to retail, HoReCa, institutional buyers, and
-                        international export markets, backed by full safety documentation and consistent quality.</p>
-                </div>
-                <div class="role-card role-card-highlight">
-                    <div class="role-card-icon">
-                        <img loading="lazy" src="icons/Specialization.png" alt="Specialization"
-                            style="width: 40px; height: 40px; object-fit: contain; filter: brightness(0) invert(1);">
-                    </div>
-                    <h3>Specialization</h3>
-                    <p>We focus exclusively on <strong>gourmet and medicinal mushrooms</strong> Shiitake, Lion's Mane,
-                        Reishi, and Wood Ear for culinary, medicinal, and cosmetic applications worldwide.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="section section-dark" id="services">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">What We Do</span>
-                <h2 class="section-title gradient-heading">From Farm to Table: Our Step-by-Step Process</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-card animate-on-scroll" data-delay="0">
-                    <div class="service-icon-wrap">
-                        <svg viewBox="0 0 64 64" fill="none" width="52" height="52" filter="url(#metalDrop)">
-                            <circle cx="32" cy="32" r="30" fill="url(#silverGradient)" opacity="0.15"
-                                stroke="url(#silverGradientLight)" stroke-width="1" />
-                            <rect x="14" y="32" width="36" height="20" rx="4" fill="url(#silverGradient)" />
-                            <line x1="22" y1="32" x2="22" y2="52" stroke="#424242" stroke-width="1.5" />
-                            <line x1="30" y1="32" x2="30" y2="52" stroke="#424242" stroke-width="1.5" />
-                            <line x1="38" y1="32" x2="38" y2="52" stroke="#424242" stroke-width="1.5" />
-                            <line x1="14" y1="40" x2="50" y2="40" stroke="#424242" stroke-width="1.5" />
-                            <line x1="14" y1="46" x2="50" y2="46" stroke="#424242" stroke-width="1.5" />
-                            <path d="M20 32 Q32 18 44 32" stroke="url(#silverGradientLight)" stroke-width="3"
-                                fill="none" stroke-linecap="round" />
-                            <ellipse cx="32" cy="29" rx="10" ry="5" fill="url(#silverGradientLight)" />
-                            <rect x="29" y="29" width="6" height="6" rx="1" fill="#757575" />
-                        </svg>
-                    </div>
-                    <div class="service-number">01</div>
-                    <h3 class="service-title">Collection &amp; Intake</h3>
-                    <p>Farm source, harvest date, variety, and quantity logged at every step for full traceability.
-                    </p>
-                </div>
-                <div class="service-card animate-on-scroll" data-delay="100">
-                    <div class="service-icon-wrap">
-                        <svg viewBox="0 0 64 64" fill="none" width="52" height="52" filter="url(#metalDrop)">
-                            <circle cx="32" cy="32" r="30" fill="url(#silverGradient)" opacity="0.15"
-                                stroke="url(#silverGradientLight)" stroke-width="1" />
-                            <rect x="12" y="14" width="40" height="9" rx="4" fill="url(#silverGradientLight)" />
-                            <rect x="16" y="28" width="32" height="9" rx="4" fill="url(#silverGradient)" />
-                            <rect x="20" y="42" width="24" height="9" rx="4" fill="#616161" />
-                            <circle cx="49" cy="15" r="8" fill="url(#silverGradientLight)" />
-                            <polygon points="49,10 50.5,14 55,14 51.5,16.5 53,21 49,18 45,21 46.5,16.5 43,14 47.5,14"
-                                fill="#BDBDBD" />
-                        </svg>
-                    </div>
-                    <div class="service-number">02</div>
-                    <h3 class="service-title">Sorting &amp; Grading</h3>
-                    <p>Three grades: <strong>Premium</strong> (retail), <strong>Standard</strong> (HoReCa),
-                        <strong>Processing</strong> (value-add) zero waste.
-                    </p>
-                </div>
-                <div class="service-card animate-on-scroll" data-delay="200">
-                    <div class="service-icon-wrap">
-                        <svg viewBox="0 0 64 64" fill="none" width="52" height="52" filter="url(#metalDrop)">
-                            <circle cx="32" cy="32" r="30" fill="url(#silverGradient)" opacity="0.15"
-                                stroke="url(#silverGradientLight)" stroke-width="1" />
-                            <path d="M32 10 L50 18 L50 34 C50 44 32 54 32 54 C32 54 14 44 14 34 L14 18 Z"
-                                fill="url(#silverGradient)" />
-                            <path d="M32 15 L46 22 L46 34 C46 42 32 50 32 50 C32 50 18 42 18 34 L18 22 Z"
-                                fill="url(#silverGradientLight)" />
-                            <path d="M24 32 L30 38 L42 26" stroke="#424242" stroke-width="3.5" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <div class="service-number">03</div>
-                    <h3 class="service-title">Quality Standardization</h3>
-                    <p>Defect inspection, moisture control, and clean-room protocols ensure every batch exceeds
-                        expectations.</p>
-                </div>
-                <div class="service-card animate-on-scroll" data-delay="300">
-                    <div class="service-icon-wrap">
-                        <svg viewBox="0 0 64 64" fill="none" width="52" height="52" filter="url(#metalDrop)">
-                            <circle cx="32" cy="32" r="30" fill="url(#silverGradient)" opacity="0.15"
-                                stroke="url(#silverGradientLight)" stroke-width="1" />
-                            <path d="M26 10 L26 28 L16 46 C14 50 17 54 22 54 L42 54 C47 54 50 50 48 46 L38 28 L38 10 Z"
-                                fill="url(#silverGradient)" />
-                            <path d="M18 46 C16 49 18 53 22 53 L42 53 C46 53 48 49 46 46 L36 30 L28 30 Z"
-                                fill="url(#silverGradientLight)" />
-                            <circle cx="26" cy="43" r="2.5" fill="#424242" />
-                            <circle cx="34" cy="48" r="1.8" fill="#424242" />
-                            <rect x="26" y="8" width="12" height="5" rx="2" fill="#757575" />
-                        </svg>
-                    </div>
-                    <div class="service-number">04</div>
-                    <h3 class="service-title">Processing &amp; Value Addition</h3>
-                    <p>Dried forms, fine powders, and supplements extending shelf life from days to <strong>12+
-                            months</strong>.</p>
-                </div>
-                <div class="service-card animate-on-scroll" data-delay="400">
-                    <div class="service-icon-wrap">
-                        <svg viewBox="0 0 64 64" fill="none" width="52" height="52" filter="url(#metalDrop)">
-                            <circle cx="32" cy="32" r="30" fill="url(#silverGradient)" opacity="0.15"
-                                stroke="url(#silverGradientLight)" stroke-width="1" />
-                            <rect x="10" y="26" width="44" height="28" rx="3" fill="url(#silverGradient)" />
-                            <path d="M10 26 L32 18 L54 26" fill="url(#silverGradientLight)" />
-                            <path d="M32 18 L54 26 L54 30 L32 22 Z" fill="#E0E0E0" opacity="0.7" />
-                            <path d="M10 26 L32 22 L32 18 L10 26" fill="#BDBDBD" />
-                            <rect x="18" y="34" width="28" height="14" rx="2" fill="#FAFAFA" />
-                            <rect x="21" y="37" width="22" height="2" rx="1" fill="#9E9E9E" />
-                            <rect x="21" y="41" width="16" height="2" rx="1" fill="#E0E0E0" />
-                        </svg>
-                    </div>
-                    <div class="service-number">05</div>
-                    <h3 class="service-title">Packaging &amp; Labeling</h3>
-                    <p>Food-safe packaging with batch number, processing date, and storage instructions on every unit.
-                    </p>
-                </div>
-                <div class="service-card animate-on-scroll" data-delay="500">
-                    <div class="service-icon-wrap">
-                        <svg viewBox="0 0 64 64" fill="none" width="52" height="52" filter="url(#metalDrop)">
-                            <circle cx="32" cy="32" r="30" fill="url(#silverGradient)" opacity="0.15"
-                                stroke="url(#silverGradientLight)" stroke-width="1" />
-                            <circle cx="32" cy="32" r="18" fill="url(#silverGradient)" />
-                            <ellipse cx="32" cy="32" rx="8" ry="18" stroke="url(#silverGradientLight)"
-                                stroke-width="1.5" fill="none" />
-                            <line x1="14" y1="32" x2="50" y2="32" stroke="url(#silverGradientLight)"
-                                stroke-width="1.5" />
-                            <line x1="16" y1="24" x2="48" y2="24" stroke="url(#silverGradientLight)" stroke-width="1"
-                                opacity="0.7" />
-                            <circle cx="47" cy="17" r="9" fill="url(#silverGradientLight)" />
-                            <path
-                                d="M47 10 C44 10 41 13 41 16 C41 20 47 26 47 26 C47 26 53 20 53 16 C53 13 50 10 47 10Z"
-                                fill="#9E9E9E" />
-                            <circle cx="47" cy="16" r="2.5" fill="#424242" />
-                        </svg>
-                    </div>
-                    <div class="service-number">06</div>
-                    <h3 class="service-title">Market Distribution</h3>
-                    <p>Real-time routing to retail, HoReCa, enterprise, and export markets across Europe &amp; North
-                        America.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Products Section -->
-    <section class="section section-light" id="products">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">Our Products</span>
-                <h2 class="section-title">Premium Mushroom Products</h2>
-            </div>
-
-            <!-- Product Forms Strip -->
-            <div class="product-forms-strip animate-on-scroll">
-                <h3 class="strip-title">Product Forms We Offer</h3>
-                <div class="product-forms-row">
-                    <div class="product-form-item">
-                        <div class="pf-icon" style="padding: 0; background: none; border: none;">
-                            <img loading="lazy" src="fresh mushroom.jpg" alt="Fresh Mushrooms"
-                                style="width: 48px; height: 48px; object-fit: cover; border-radius: 8px;">
-                        </div>
-                        <div>
-                            <strong>Fresh Mushrooms</strong>
-                            <span>Harvested at peak freshness ideal for retail, chefs &amp; gourmet consumers. Shelf
-                                life 7-14 days.</span>
-                        </div>
-                    </div>
-                    <div class="product-form-item">
-                        <div class="pf-icon" style="padding: 0; background: none; border: none;">
-                            <img loading="lazy" src="Dried Mushrooms.jpg" alt="Dried Mushrooms"
-                                style="width: 48px; height: 48px; object-fit: cover; border-radius: 8px;">
-                        </div>
-                        <div>
-                            <strong>Dried Mushrooms</strong>
-                            <span>Flavor-concentrated, preservative-free soups, specialty teas, export. Up to 12
-                                months shelf life.</span>
-                        </div>
-                    </div>
-                    <div class="product-form-item">
-                        <div class="pf-icon" style="padding: 0; background: none; border: none;">
-                            <img loading="lazy" src="powder mushroom.jpg" alt="Mushroom Powder"
-                                style="width: 48px; height: 48px; object-fit: cover; border-radius: 8px;">
-                        </div>
-                        <div>
-                            <strong>Mushroom Powder</strong>
-                            <span>Nutrient-dense powders for supplements, baking &amp; cosmetics 18-24 month
-                                shelf life.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Image-only product grid -->
-            <div class="products-grid products-grid--compact animate-on-scroll">
-                <div class="product-card product-card--img-only">
-                    <div class="product-image-wrapper">
-                        <img src="Lions Mane Powder Box.png" alt="Lion's Mane Powder" class="product-image"
-                            loading="lazy">
-                        <div class="product-img-label">Lion's Mane Powder</div>
-                    </div>
-                </div>
-                <div class="product-card product-card--img-only">
-                    <div class="product-image-wrapper">
-                        <img src="Reishi Powder Box.png" alt="Reishi Powder" class="product-image" loading="lazy">
-                        <div class="product-img-label">Reishi Powder</div>
-                    </div>
-                </div>
-                <div class="product-card product-card--img-only">
-                    <div class="product-image-wrapper">
-                        <img src="Shiitake Powder Box.png" alt="Shiitake Powder" class="product-image" loading="lazy">
-                        <div class="product-img-label">Shiitake Powder</div>
-                    </div>
-                </div>
-                <div class="product-card product-card--img-only">
-                    <div class="product-image-wrapper">
-                        <img src="Wood Ear Powder Box.png" alt="Wood Ear Powder" class="product-image" loading="lazy">
-                        <div class="product-img-label">Wood Ear Powder</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Smart Logistics Section -->
-    <section class="section section-dark" id="logistics">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">Supply Chain</span>
-                <h2 class="section-title">Powering Efficient Supply Chains</h2>
-            </div>
-            <div class="logistics-grid">
-                <div class="logistics-card animate-on-scroll">
-                    <div class="logistics-icon">
-                        <img loading="lazy" src="icons/Buffer Stock.png" alt="Buffer Stock"
-                            style="width: 40px; height: 40px; object-fit: contain; filter: brightness(0) invert(1);">
-                    </div>
-                    <h3>Buffer Stock</h3>
-                    <p>We maintain strategic inventory to absorb demand surges and cushion against supply disruptions.
-                    </p>
-                </div>
-                <div class="logistics-card animate-on-scroll">
-                    <div class="logistics-icon">
-                        <img loading="lazy" src="icons/smart conversion.png" alt="Smart Conversion"
-                            style="width: 40px; height: 40px; object-fit: contain; filter: brightness(0) invert(1);">
-                    </div>
-                    <h3>Smart Conversion</h3>
-                    <p>Surplus fresh harvests are quickly processed into shelf-stable dried and powdered forms to
-                        eliminate waste.</p>
-                </div>
-                <div class="logistics-card animate-on-scroll">
-                    <div class="logistics-icon">
-                        <img loading="lazy" src="icons/Quick Release.png" alt="Quick Release"
-                            style="width: 40px; height: 40px; object-fit: contain; filter: brightness(0) invert(1);">
-                    </div>
-                    <h3>Quick Release</h3>
-                    <p>Rapid deployment capabilities keep shelves stocked and customers satisfied year-round.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Impact Section -->
-    <section class="section section-light" id="impact">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">Our Impact</span>
-                <h2 class="section-title">Creating Value Across the Entire Ecosystem</h2>
-            </div>
-            <div class="impact-grid">
-                <div class="impact-card animate-on-scroll">
-                    <div class="impact-header">
-                        <h3>For Farmers</h3>
-                        <div class="impact-icon-geo"><svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                                <path d="M14 4v20M7 10l7-6 7 6M4 24h20" stroke="currentColor" stroke-width="1.5"
-                                    stroke-linecap="round" />
-                            </svg></div>
-                    </div>
-                    <div class="impact-chart-wrap">
-                        <canvas id="farmersChart" height="160"></canvas>
-                    </div>
-                    <ul class="impact-list">
-                        <li>Guaranteed purchasing at fair, transparent prices.</li>
-                        <li>Dramatically reduced losses from spoilage and waste.</li>
-                        <li>2-3&times; earnings boost through organized farmer clusters.</li>
-                    </ul>
-                </div>
-                <div class="impact-card animate-on-scroll">
-                    <div class="impact-header">
-                        <h3>For Buyers</h3>
-                        <div class="impact-icon-geo"><svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                                <rect x="3" y="3" width="22" height="22" rx="4" stroke="currentColor"
-                                    stroke-width="1.5" />
-                                <path d="M3 10h22M10 10v15" stroke="currentColor" stroke-width="1.5" />
-                            </svg></div>
-                    </div>
-                    <div class="impact-chart-wrap">
-                        <canvas id="buyersChart" height="160"></canvas>
-                    </div>
-                    <ul class="impact-list">
-                        <li>Consistent taste, texture, and quality in every batch.</li>
-                        <li>Reliable, year-round supply with no seasonal gaps.</li>
-                        <li>Complete safety documentation and full traceability.</li>
-                    </ul>
-                </div>
-                <div class="impact-card animate-on-scroll">
-                    <div class="impact-header">
-                        <h3>Strategic Impact</h3>
-                        <div class="impact-icon-geo"><svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                                <polyline points="4,22 10,14 16,18 24,6" stroke="currentColor" stroke-width="1.5"
-                                    stroke-linecap="round" fill="none" />
-                                <polyline points="18,6 24,6 24,12" stroke="currentColor" stroke-width="1.5"
-                                    stroke-linecap="round" fill="none" />
-                            </svg></div>
-                    </div>
-                    <div class="impact-chart-wrap">
-                        <canvas id="growthChart" height="160"></canvas>
-                    </div>
-                    <ul class="impact-list">
-                        <li>Enabling the mushroom sector to scale safely nationwide.</li>
-                        <li>Creating jobs while driving sustainability and export growth.</li>
-                        <li>Building Bangladesh's first organized, premium mushroom industry.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section class="section section-dark" id="team">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">Our People</span>
-                <h2 class="section-title">The Team Behind MEXIMCO</h2>
-            </div>
-            <p class="section-subtitle animate-on-scroll">A passionate team of entrepreneurs, scientists, and industry
-                experts united by a shared commitment to transforming Bangladesh's mushroom ecosystem into a
-                world-class
-                industry.</p>
-            <div class="team-grid">
-                <div class="team-card animate-on-scroll" data-delay="0">
-                    <div class="team-avatar">
-                        <div class="avatar-placeholder">F</div>
-                    </div>
-                    <h3 class="team-name">Founder &amp; CEO</h3>
-                    <p class="team-role">Strategic Vision &amp; Operations</p>
-                    <p class="team-bio">Leading MEXIMCO's mission to establish Bangladesh's first organized mushroom
-                        processing infrastructure and drive the industry toward global competitiveness.</p>
-                </div>
-                <div class="team-card animate-on-scroll" data-delay="100">
-                    <div class="team-avatar">
-                        <div class="avatar-placeholder">R</div>
-                    </div>
-                    <h3 class="team-name">Head of Research</h3>
-                    <p class="team-role">Innovation &amp; Quality</p>
-                    <p class="team-bio">Driving R&amp;D partnerships with leading mycology institutions and developing
-                        advanced cultivation, processing, and quality control methodologies.</p>
-                </div>
-                <div class="team-card animate-on-scroll" data-delay="200">
-                    <div class="team-avatar">
-                        <div class="avatar-placeholder">O</div>
-                    </div>
-                    <h3 class="team-name">Operations Manager</h3>
-                    <p class="team-role">Supply Chain &amp; Logistics</p>
-                    <p class="team-bio">Orchestrating farm-to-market logistics with precision, ensuring efficient,
-                        reliable, and scalable mushroom processing operations across the supply chain.</p>
-                </div>
-                <div class="team-card animate-on-scroll" data-delay="300">
-                    <div class="team-avatar">
-                        <div class="avatar-placeholder">P</div>
-                    </div>
-                    <h3 class="team-name">Partnerships Lead</h3>
-                    <p class="team-role">Business Development</p>
-                    <p class="team-bio">Building and nurturing strategic relationships with farmers, buyers, exporters,
-                        and research institutions across Bangladesh and beyond.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Innovation & CTA Combined Section -->
-    <section class="section section-dark" id="research"
-        style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('innovation background.png'); background-size: cover; background-position: center;">
-        <div class="container">
-            <div class="cta-content animate-on-scroll" style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <span class="section-label">Innovation</span>
-                <h2 class="section-title" style="color: var(--white); margin-bottom: 24px;">Driven by Science. Ready for
-                    the Revolution?</h2>
-                <p class="cta-subtitle" style="margin-bottom: 40px; color: var(--gray-light);">We collaborate with
-                    leading researchers to advance cultivation techniques. Whether you are a farmer, researcher, buyer,
-                    or investor, there is a place for you in the MEXIMCO ecosystem. Let us build the future of nutrition
-                    together.</p>
-                <div class="cta-actions" style="justify-content: center;">
-                    <a href="#contact" class="btn btn-primary magnetic-btn">Get in Touch</a>
-                    <a href="#products" class="btn btn-secondary magnetic-btn">View Our Products</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Product Inquiry & CTA Section -->
-    <section class="section section-alt" id="inquiry">
-        <div class="container">
-            <div class="inquiry-wrapper">
-                <div class="inquiry-info animate-on-scroll">
-                    <span class="section-label">Export & Wholesale</span>
-                    <h2 class="section-title">Partner with MEXIMCO for Premium Supplies</h2>
-                    <p class="section-subtitle">We supply retail chains, HoReCa, and international buyers with premium,
-                        traceable mushroom products. Request a quote or sample today.</p>
-                    <ul class="inquiry-benefits">
-                        <li><i data-lucide="check-circle"></i> Guarantee of consistent quality</li>
-                        <li><i data-lucide="check-circle"></i> Full traceability and export documentation</li>
-                        <li><i data-lucide="check-circle"></i> Custom packaging and bulk volumes</li>
-                    </ul>
-                </div>
-                <div class="inquiry-form-card animate-on-scroll">
-                    <form class="export-form" id="exportForm">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" placeholder="John Doe" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="company">Company Name</label>
-                            <input type="text" id="company" placeholder="Your Company Ltd." required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Work Email</label>
-                            <input type="email" id="email" placeholder="john@company.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="interest">Product Interest</label>
-                            <select id="interest" required>
-                                <option value="" disabled selected>Select a product...</option>
-                                <option value="fresh">Fresh Mushrooms</option>
-                                <option value="dried">Dried Mushrooms</option>
-                                <option value="powder">Mushroom Powders</option>
-                                <option value="other">Other / General Inquiry</option>
-                            </select>
-                        </div>
-                        <div class="form-group full-width">
-                            <label for="message">Message</label>
-                            <textarea id="message" rows="4" placeholder="Tell us about your requirements..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-submit full-width">Submit Inquiry</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section section-dark" id="contact">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">Get in Touch</span>
-                <h2 class="section-title">Join Us in Building the Future</h2>
-            </div>
-            <p class="section-subtitle animate-on-scroll">MEXIMCO welcomes collaborations with mushroom farmers,
-                researchers, logistics firms, and buyers. Together, we are creating Bangladesh's first organized
-                and
-                globally competitive mushroom industry.</p>
-            <div class="contact-grid animate-on-scroll">
-                <div class="contact-card">
-                    <div class="contact-icon-geo"><svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                            <path d="M16 3C11 3 7 7.5 7 12.5C7 19.5 16 29 16 29s9-9.5 9-16.5C25 7.5 21 3 16 3z"
-                                stroke="currentColor" stroke-width="1.5" />
-                            <circle cx="16" cy="12.5" r="3.5" stroke="currentColor" stroke-width="1.5" />
-                        </svg></div>
-                    <h3>Visit Us</h3>
-                    <p>JK Tower 31, Shegunbagicha,<br>Ramna, Dhaka - 1000,<br>Bangladesh</p>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon-geo"><svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                            <rect x="5" y="5" width="22" height="22" rx="6" stroke="currentColor" stroke-width="1.5" />
-                            <path d="M10 13l6 5 6-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                        </svg></div>
-                    <h3>Call Us</h3>
-                    <p><a href="tel:+8801321147011">+880 1321 147 011</a></p>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon-geo"><svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                            <rect x="3" y="7" width="26" height="18" rx="3" stroke="currentColor" stroke-width="1.5" />
-                            <polyline points="3,7 16,18 29,7" stroke="currentColor" stroke-width="1.5" fill="none" />
-                        </svg></div>
-                    <h3>Email Us</h3>
-                    <p><a href="mailto:contact@meximcoltd.com">contact@meximcoltd.com</a></p>
-                </div>
-            </div>
-
         </div>
     </section>
 
@@ -940,19 +277,19 @@
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Our Services</a></li>
-                        <li><a href="#products">Products</a></li>
-                        <li><a href="#impact">Our Impact</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="vision.html#ecosystem">Our Role</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="impact.html">Our Impact</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h4>Explore</h4>
                     <ul>
-                        <li><a href="#ecosystem">Ecosystem</a></li>
-                        <li><a href="#research">Research</a></li>
-                        <li><a href="#future">Future Plans</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="vision.html">Vision & Roadmap</a></li>
+                        <li><a href="team.html#research">Research</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
@@ -968,21 +305,10 @@
                                 </path>
                             </svg>
                         </a>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
-                            aria-label="Instagram">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                            </svg>
-                        </a>
                         <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path
-                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                                </path>
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                                 <rect x="2" y="9" width="4" height="12"></rect>
                                 <circle cx="4" cy="4" r="2"></circle>
                             </svg>
@@ -991,26 +317,30 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 MEXIMCO. All rights reserved.</p>
+                <p>&copy; 2025 MEXIMCO — Mushroom Import Export Company Limited. All rights reserved.</p>
+                <p>Registered in Bangladesh | JK Tower, Shegunbagicha, Dhaka</p>
             </div>
         </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
+    <!-- WhatsApp Float Button -->
     <a href="https://wa.me/8801321147011" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
-        aria-label="Chat with us on WhatsApp">
-        <svg viewBox="0 0 32 32" width="32" height="32" fill="currentColor">
+        aria-label="Chat on WhatsApp">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
             <path
-                d="M16 2C8.268 2 2 8.268 2 16c0 2.457.632 4.767 1.745 6.786L2.33 28.5l5.88-1.543A13.93 13.93 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.688c-2.062 0-4.043-.532-5.8-1.545l-.417-.247-4.316 1.134 1.15-4.204-.27-.432A11.66 11.66 0 014.28 16c0-6.46 5.258-11.72 11.72-11.72S27.72 9.54 27.72 16 22.46 27.688 16 27.688zm6.54-8.917c-.358-.18-2.12-.105-2.45-.116-.33-.012-.57-.012-.81.347-.24.36-.93 1.176-1.14 1.417-.21.24-.42.27-.78.09-.36-.18-1.514-.558-2.883-1.782-1.065-.953-1.785-2.13-1.995-2.49-.21-.36-.022-.555.158-.735.162-.162.36-.42.54-.63.18-.21.24-.36.36-.6.12-.24.06-.45-.03-.63-.09-.18-.81-1.95-1.11-2.67-.29-.705-.585-.608-.81-.617-.21-.008-.45-.01-.69-.01-.24 0-.63.09-.96.45-.33.36-1.26 1.23-1.26 3.004 0 1.774 1.29 3.487 1.47 3.727.18.24 2.54 3.882 6.152 5.442.86.37 1.53.593 2.053.76.864.274 1.65.234 2.27.142.693-.102 2.12-.867 2.42-1.705.3-8.38.3-1.554.21-1.705-.09-.15-.33-.24-.69-.42z" />
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
         </svg>
     </a>
 
-    <!-- Sticky Mobile CTA -->
-    <div class="mobile-sticky-cta">
-        <a href="#inquiry" class="btn btn-primary full-width">Request a Quote</a>
-    </div>
+    <!-- Back to Top -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
 
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

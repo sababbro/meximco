@@ -1,4 +1,4 @@
-﻿/* ===================================
+/* ===================================
    MEXIMCO — Interactive Effects Engine
    Each feature is a self-contained module.
    A failure in one will NOT affect the others.
@@ -251,7 +251,7 @@
 
 
 /* ===========================================
-   2. MUSHROOM CURSOR
+   2. MUSHROOM CURSOR (HARDWARE ACCELERATED)
    =========================================== */
 (function initCursor() {
     const cursor = document.getElementById('cursor');
@@ -263,22 +263,22 @@
         return;
     }
 
-    let cursorX = 0, cursorY = 0, trailX = 0, trailY = 0;
+    let cursorX = window.innerWidth / 2, cursorY = window.innerHeight / 2;
+    let trailX = cursorX, trailY = cursorY;
 
     document.addEventListener('mousemove', (e) => {
         cursorX = e.clientX; cursorY = e.clientY;
     });
 
-    let angle = 0;
     function updateCursor() {
-        // Mushroom follows mouse directly
-        cursor.style.left = cursorX + 'px';
-        cursor.style.top = cursorY + 'px';
-        // Trailing ring lags behind
-        trailX += (cursorX - trailX) * 0.12;
-        trailY += (cursorY - trailY) * 0.12;
-        cursorTrail.style.left = trailX + 'px';
-        cursorTrail.style.top = trailY + 'px';
+        // Mushroom follows mouse smoothly using GPU-accelerated transform
+        cursor.style.transform = `translate3d(calc(${cursorX}px - 50%), calc(${cursorY}px - 50%), 0)`;
+        
+        // Trailing ring lags behind slightly
+        trailX += (cursorX - trailX) * 0.15; // slightly faster/smoother follow
+        trailY += (cursorY - trailY) * 0.15;
+        cursorTrail.style.transform = `translate3d(calc(${trailX}px - 50%), calc(${trailY}px - 50%), 0)`;
+        
         requestAnimationFrame(updateCursor);
     }
     updateCursor();
@@ -289,13 +289,13 @@
         el.addEventListener('mouseleave', () => { cursor.classList.remove('hover-active'); cursorTrail.classList.remove('hover-active'); });
     });
 
-    // Click burst: briefly scale the mushroom
+    // Click burst: briefly scale the mushroom while maintaining current position
     document.addEventListener('click', () => {
-        cursor.style.transition = 'transform 0.1s';
-        cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+        cursor.style.transition = 'transform 0.1s cubic-bezier(0.4,0,0.2,1)';
+        cursor.style.transform = `translate3d(calc(${cursorX}px - 50%), calc(${cursorY}px - 50%), 0) scale(1.5)`;
         setTimeout(() => {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursor.style.transition = '';
+            cursor.style.transform = `translate3d(calc(${cursorX}px - 50%), calc(${cursorY}px - 50%), 0) scale(1)`;
+            setTimeout(() => cursor.style.transition = '', 100);
         }, 120);
     });
 })();
@@ -332,22 +332,128 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* ===========================================
-   3. SCROLL ANIMATIONS (IntersectionObserver)
+   3. SCROLL ANIMATIONS (GSAP ScrollTrigger)
+   Enhanced: Per-section motion identity
    =========================================== */
 (function initScrollAnimations() {
-    const elements = document.querySelectorAll('.animate-on-scroll');
-    if (!elements.length) return;
+    function applyGSAP() {
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+            setTimeout(applyGSAP, 100);
+            return;
+        }
+        
+        gsap.registerPlugin(ScrollTrigger);
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+        /* --- Detect section-specific motion config --- */
+        function getMotionConfig(el) {
+            const section = el.closest('section');
+            if (!section) return null;
+            const id = section.id || '';
+
+            // Hero elements are handled by CSS entrance — skip
+            if (id === 'hero') return null;
+
+            // About section: text slides left, stats slide right
+            if (id === 'about') {
+                if (el.classList.contains('about-text')) return { from: { x: -80, opacity: 0 }, duration: 1.0, ease: 'power3.out' };
+                if (el.classList.contains('about-stats')) return { from: { x: 80, opacity: 0 }, duration: 1.0, ease: 'power3.out' };
+                if (el.classList.contains('about-facility')) return { from: { y: 50, opacity: 0, scale: 0.96 }, duration: 1.0, stagger: 0.12, ease: 'power2.out' };
             }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    elements.forEach(el => observer.observe(el));
+            // Mission Quote: scale bloom from center
+            if (id === 'mission') {
+                return { from: { scale: 0.85, opacity: 0 }, duration: 1.2, ease: 'power2.out' };
+            }
+
+            // Future/Rocket: already has its own animation system — subtle reveal only
+            if (id === 'future') {
+                return { from: { y: 30, opacity: 0 }, duration: 0.8, ease: 'power2.out' };
+            }
+
+            // Our Role / Ecosystem: staggered card cascade
+            if (id === 'ecosystem') {
+                return { from: { y: 60, opacity: 0, scale: 0.95 }, duration: 0.9, ease: 'power3.out' };
+            }
+
+            // Products: cascade stagger
+            if (id === 'products') {
+                return { from: { y: 50, opacity: 0, rotationX: 6 }, duration: 1.0, ease: 'power3.out' };
+            }
+
+            // Logistics: slide up quickly
+            if (id === 'logistics') {
+                return { from: { y: 40, opacity: 0 }, duration: 0.8, ease: 'power2.out' };
+            }
+
+            // Impact: fan-in from center with scale
+            if (id === 'impact') {
+                return { from: { y: 60, opacity: 0, scale: 0.92 }, duration: 1.1, ease: 'power3.out' };
+            }
+
+            // Team: gentle rise
+            if (id === 'team') {
+                return { from: { y: 40, opacity: 0 }, duration: 0.9, ease: 'power2.out' };
+            }
+
+            // Innovation / Research: fade with slight scale
+            if (id === 'research') {
+                return { from: { y: 30, opacity: 0, scale: 0.97 }, duration: 1.0, ease: 'power2.out' };
+            }
+
+            // Inquiry: horizontal slide
+            if (id === 'inquiry') {
+                if (el.classList.contains('inquiry-info')) return { from: { x: -60, opacity: 0 }, duration: 1.0, ease: 'power3.out' };
+                if (el.classList.contains('inquiry-form-card')) return { from: { x: 60, opacity: 0 }, duration: 1.0, ease: 'power3.out' };
+            }
+
+            // Contact: quick subtle rise
+            if (id === 'contact') {
+                return { from: { y: 30, opacity: 0 }, duration: 0.7, ease: 'power2.out' };
+            }
+
+            // Default fallback
+            return { from: { y: 60, opacity: 0, rotationX: 8, scale: 0.98 }, duration: 1.2, ease: 'power3.out' };
+        }
+
+        const elements = document.querySelectorAll('.animate-on-scroll');
+        if (!elements.length) return;
+
+        elements.forEach((el, index) => {
+            const config = getMotionConfig(el);
+            if (!config) return; // Skip hero elements
+
+            el.style.transition = 'none';
+            gsap.set(el, { opacity: 0 });
+
+            // Calculate stagger delay for sibling elements within same section
+            const section = el.closest('section');
+            const siblings = section ? Array.from(section.querySelectorAll('.animate-on-scroll')) : [];
+            const siblingIndex = siblings.indexOf(el);
+            const staggerDelay = siblingIndex * (config.stagger || 0.08);
+
+            gsap.fromTo(el, 
+                config.from,
+                {
+                    y: 0, x: 0, opacity: 1,
+                    rotationX: 0, scale: 1,
+                    duration: config.duration,
+                    delay: staggerDelay,
+                    ease: config.ease,
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 88%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applyGSAP);
+    } else {
+        applyGSAP();
+    }
 })();
 
 
@@ -1154,4 +1260,348 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', highlightNav, { passive: true });
     // Run once on load
     highlightNav();
+})();
+
+/* ===========================================
+   21. TEAM INTERACTIVE CAROUSEL & FLIP
+   =========================================== */
+(function initTeamCarousel() {
+    const track     = document.getElementById('teamTrack');
+    const container = document.querySelector('.team-carousel-container');
+    const prevBtn   = document.getElementById('teamPrev');
+    const nextBtn   = document.getElementById('teamNext');
+    const cards     = document.querySelectorAll('.team-flip-card');
+
+    if (!track || !container || cards.length === 0) return;
+
+    // Build dots dynamically from card count
+    const dotsWrap = document.getElementById('team-dots');
+    let dots = [];
+    if (dotsWrap) {
+        dotsWrap.innerHTML = '';
+        cards.forEach((_, i) => {
+            const d = document.createElement('button');
+            d.className = 'carousel-dot';
+            d.setAttribute('aria-label', `Go to member ${i + 1}`);
+            dotsWrap.appendChild(d);
+            dots.push(d);
+        });
+    }
+
+    // Inject progress bar above the controls
+    const controlsEl = document.querySelector('.team-carousel-controls');
+    let progressFill = null;
+    if (controlsEl) {
+        const bar = document.createElement('div');
+        bar.className = 'team-progress-bar';
+        bar.innerHTML = '<div class="team-progress-bar-fill"></div>';
+        controlsEl.parentNode.insertBefore(bar, controlsEl);
+        progressFill = bar.querySelector('.team-progress-bar-fill');
+    }
+
+    let isDragging  = false;
+    let startX      = 0;
+    let scrollLeft  = 0;
+    let currentIndex = 0;
+
+    /* ── Utilities ── */
+    function scrollToCard(index, animated = true) {
+        const card = cards[index];
+        if (!card) return;
+        const target = card.offsetLeft - (container.clientWidth / 2) + (card.offsetWidth / 2);
+        container.scrollTo({ left: target, behavior: animated ? 'smooth' : 'auto' });
+    }
+
+    function getClosestIndex() {
+        const scrollCenter = container.scrollLeft + container.clientWidth / 2;
+        let closest = 0, minDist = Infinity;
+        cards.forEach((card, i) => {
+            const center = card.offsetLeft + card.offsetWidth / 2;
+            const dist   = Math.abs(scrollCenter - center);
+            if (dist < minDist) { minDist = dist; closest = i; }
+        });
+        return closest;
+    }
+
+    function updateActiveState(index) {
+        const prevIndex = currentIndex;
+        currentIndex = index;
+
+        // Transition animation classes
+        if (prevIndex !== index) {
+            const prevCard = cards[prevIndex];
+            const nextCard = cards[index];
+
+            // Exit animation on previous active card
+            if (prevCard) {
+                prevCard.classList.remove('card-enter');
+                prevCard.classList.add('card-exit');
+                prevCard.addEventListener('animationend', function handler() {
+                    prevCard.classList.remove('card-exit');
+                    prevCard.removeEventListener('animationend', handler);
+                }, { once: true });
+            }
+
+            // Enter animation on new active card
+            if (nextCard) {
+                nextCard.classList.remove('card-exit');
+                nextCard.classList.add('card-enter');
+                nextCard.addEventListener('animationend', function handler() {
+                    nextCard.classList.remove('card-enter');
+                    nextCard.removeEventListener('animationend', handler);
+                }, { once: true });
+            }
+        }
+
+        // Toggle is-active on cards
+        cards.forEach((card, i) => {
+            card.classList.toggle('is-active', i === index);
+        });
+        // Update dots
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+        // Update prev/next buttons
+        if (prevBtn) prevBtn.disabled = (index <= 0);
+        if (nextBtn) nextBtn.disabled = (index >= cards.length - 1);
+        // Update counter text
+        const counter = document.getElementById('teamCounter');
+        if (counter) counter.textContent = `${index + 1} / ${cards.length}`;
+    }
+
+    function onScrollEnd() {
+        const idx = getClosestIndex();
+        updateActiveState(idx);
+        resetProgress();
+    }
+
+    /* ── Flip Logic ── */
+    cards.forEach(card => {
+        const inner = card.querySelector('.team-card-inner');
+        if (inner) {
+            inner.addEventListener('click', () => {
+                if (isDragging) return;
+                card.classList.toggle('is-flipped');
+            });
+        }
+    });
+
+    /* ── Drag / Swipe Logic ── */
+    const onDragStart = (e) => {
+        isDragging = true;
+        container.classList.add('is-dragging');
+        e.preventDefault();
+        startX     = (e.type.includes('mouse') ? e.pageX : e.touches[0].pageX) - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+        pauseProgress();
+    };
+
+    const onDragEnd = () => {
+        if (!isDragging) return;
+        isDragging = false;
+        container.classList.remove('is-dragging');
+        setTimeout(onScrollEnd, 150);
+        resumeProgress();
+    };
+
+    const onDragMove = (e) => {
+        if (!isDragging) return;
+        const x    = (e.type.includes('mouse') ? e.pageX : e.touches[0].pageX) - container.offsetLeft;
+        const walk = (x - startX) * 1.8;
+        container.scrollLeft = scrollLeft - walk;
+    };
+
+    container.addEventListener('mousedown',  onDragStart);
+    container.addEventListener('mouseleave', onDragEnd);
+    container.addEventListener('mouseup',    onDragEnd);
+    container.addEventListener('mousemove',  onDragMove);
+    container.addEventListener('touchstart', onDragStart, { passive: false });
+    container.addEventListener('touchend',   onDragEnd);
+    container.addEventListener('touchmove',  onDragMove,  { passive: true });
+
+    /* ── Scroll debounce ── */
+    let scrollTimer = null;
+    container.addEventListener('scroll', () => {
+        if (isDragging) return;
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(onScrollEnd, 120);
+    }, { passive: true });
+
+    /* ── Button Nav ── */
+    const getStep = () => cards[0] ? cards[0].offsetWidth + 28 : 300;
+
+    if (prevBtn) prevBtn.addEventListener('click', () => {
+        const idx = Math.max(0, currentIndex - 1);
+        scrollToCard(idx);
+        updateActiveState(idx);
+        resetProgress();
+    });
+    if (nextBtn) nextBtn.addEventListener('click', () => {
+        const idx = Math.min(cards.length - 1, currentIndex + 1);
+        scrollToCard(idx);
+        updateActiveState(idx);
+        resetProgress();
+    });
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            scrollToCard(i);
+            updateActiveState(i);
+            resetProgress();
+        });
+    });
+
+    /* ── Progress Bar (rAF) ── */
+    const SLIDE_INTERVAL = 1300; // ms
+    let progressStart = null;
+    let progressPaused = false;
+    let progressRaf   = null;
+    let isHovering    = false;
+
+    function animateProgress(timestamp) {
+        if (progressPaused || isHovering || isDragging) {
+            progressStart = null;
+            progressRaf   = requestAnimationFrame(animateProgress);
+            return;
+        }
+        if (!progressStart) progressStart = timestamp;
+        const elapsed  = timestamp - progressStart;
+        const fraction = Math.min(elapsed / SLIDE_INTERVAL, 1);
+
+        if (progressFill) progressFill.style.width = (fraction * 100) + '%';
+
+        if (fraction >= 1) {
+            // Advance to next card
+            const next = (currentIndex + 1) % cards.length;
+            scrollToCard(next);
+            updateActiveState(next);
+            progressStart = null;
+        }
+
+        progressRaf = requestAnimationFrame(animateProgress);
+    }
+
+    function resetProgress() {
+        progressStart = null;
+        if (progressFill) progressFill.style.width = '0%';
+    }
+
+    function pauseProgress()  { progressPaused = true; resetProgress(); }
+    function resumeProgress() { progressPaused = false; }
+
+    container.addEventListener('mouseenter', () => { isHovering = true;  resetProgress(); });
+    container.addEventListener('mouseleave', () => { isHovering = false; });
+    container.addEventListener('touchstart', () => { isHovering = true;  resetProgress(); }, { passive: true });
+    container.addEventListener('touchend',   () => { isHovering = false; });
+
+    /* ── Init ── */
+    // Go to first card centered after layout
+    setTimeout(() => {
+        scrollToCard(0, false);
+        updateActiveState(0);
+        progressRaf = requestAnimationFrame(animateProgress);
+    }, 150);
+})();
+
+
+/* ===========================================
+   22. HERO CINEMATIC ENTRANCE CONTROLLER
+   Adds .loaded to body → triggers CSS stagger
+   =========================================== */
+(function initHeroEntrance() {
+    function fire() {
+        // Small delay for paint to settle, then trigger CSS stagger
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                document.body.classList.add('loaded');
+            });
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fire);
+    } else {
+        fire();
+    }
+})();
+
+
+/* ===========================================
+   23. BUTTON CLICK RIPPLE EFFECT
+   Injects animated ripple circle on click
+   =========================================== */
+(function initButtonRipple() {
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.btn');
+        if (!btn) return;
+
+        const rect = btn.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        const ripple = document.createElement('span');
+        ripple.className = 'btn-ripple-circle';
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+
+        btn.appendChild(ripple);
+        ripple.addEventListener('animationend', () => ripple.remove());
+    });
+})();
+
+
+/* ===========================================
+   24. FOOTER LINK CLEANUP
+   Fixes orphaned #services link after section removal
+   =========================================== */
+(function fixFooterLinks() {
+    document.querySelectorAll('a[href="#services"]').forEach(link => {
+        link.setAttribute('href', '#ecosystem');
+    });
+})();
+
+
+/* ===========================================
+   25. MULTI-PAGE: ACTIVE NAV LINK
+   Reads current filename, adds .nav-active to
+   the matching [data-page] nav link.
+   =========================================== */
+(function initActiveNav() {
+    // Get current page from pathname (e.g. "/products.html" → "products")
+    const path = window.location.pathname;
+    const filename = path.split('/').pop().replace('.html', '') || 'index';
+
+    document.querySelectorAll('.nav-link[data-page]').forEach(link => {
+        const page = link.getAttribute('data-page');
+        if (page === filename) {
+            link.classList.add('nav-active');
+        }
+    });
+})();
+
+
+/* ===========================================
+   26. MULTI-PAGE: PAGE-EXIT FADE
+   When a nav/internal link is clicked, fade out
+   the body before navigating to give a smooth
+   cross-page transition.
+   =========================================== */
+(function initPageExitFade() {
+    // Inject keyframe for exit fade-down
+    const ss = document.createElement('style');
+    ss.textContent = '@keyframes pageFadeOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-10px)}}';
+    document.head.appendChild(ss);
+
+    document.addEventListener('click', e => {
+        const link = e.target.closest('a[href]');
+        if (!link) return;
+        const href = link.getAttribute('href');
+        // Skip hash-only, external, blank-target links
+        if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel') || link.target === '_blank') return;
+        e.preventDefault();
+        document.body.style.animation = 'pageFadeOut 0.35s cubic-bezier(0.4,0,0.2,1) forwards';
+        setTimeout(() => { window.location.href = href; }, 340);
+    });
 })();
