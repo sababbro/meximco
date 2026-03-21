@@ -398,7 +398,19 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
     padding: 6px 12px; border-radius: 8px;
     font-size: 12px; color: var(--gray);
 }
-.modal-body { font-size: 14px; line-height: 1.7; color: var(--gray); margin-bottom: 24px; padding: 20px; background: var(--surface-high); border-radius: var(--radius); }
+.modal-body { 
+    font-size: 14px; 
+    line-height: 1.7; 
+    color: var(--gray); 
+    margin-bottom: 24px; 
+    padding: 20px; 
+    background: var(--surface-high); 
+    border-radius: var(--radius); 
+    max-height: 350px; 
+    overflow-y: auto; 
+    white-space: pre-wrap; 
+    word-break: break-word; 
+}
 .modal-actions { display: flex; gap: 12px; }
 .modal-actions .btn-glow { width: auto; text-decoration: none; }
 

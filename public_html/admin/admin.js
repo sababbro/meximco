@@ -119,8 +119,8 @@ async function loadDashboard() {
         if (msgs.length === 0) {
             container.innerHTML = '<p class="empty-state">No messages yet.</p>';
         } else {
-            container.innerHTML = `<table class="data-table"><thead><tr><th>Name</th><th>Email</th><th>Interest</th><th>Date</th></tr></thead><tbody>${
-                msgs.slice(0, 5).map(m => `<tr><td>${m.name}</td><td>${m.email}</td><td>${m.interest || '-'}</td><td>${formatDate(m.created_at)}</td></tr>`).join('')
+            container.innerHTML = `<table class="data-table"><thead><tr><th>Name</th><th>Interest</th><th>Snippet</th><th>Date</th></tr></thead><tbody>${
+                msgs.slice(0, 5).map(m => `<tr><td><strong>${m.name}</strong><br><small>${m.email}</small></td><td>${m.interest || '-'}</td><td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--gray)">${m.message || ''}</td><td>${formatDate(m.created_at)}</td></tr>`).join('')
             }</tbody></table>`;
         }
     } catch (e) { console.error(e); }
@@ -168,14 +168,15 @@ function renderMessages() {
     tbody.innerHTML = allMessages.map(m => `
         <tr onclick="openMessage(${m.id})">
             <td><span class="status-dot ${m.status}"></span>${m.status}</td>
-            <td><strong>${m.name}</strong></td>
-            <td>${m.company || '-'}</td>
-            <td>${m.email}</td>
+            <td><strong>${m.name}</strong><br><small style="color:var(--gray);font-size:11px">${m.email}</small></td>
             <td>${m.interest || '-'}</td>
+            <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--gray)">${m.message || ''}</td>
             <td>${formatDate(m.created_at)}</td>
             <td>
-                ${m.status === 'unread' ? `<button class="btn-sm mark-read" onclick="event.stopPropagation();markRead(${m.id})">Mark Read</button>` : ''}
-                <button class="btn-sm delete" onclick="event.stopPropagation();deleteMessage(${m.id})">Delete</button>
+                <div style="display:flex;gap:4px">
+                    ${m.status === 'unread' ? `<button class="btn-sm mark-read" onclick="event.stopPropagation();markRead(${m.id})">Read</button>` : ''}
+                    <button class="btn-sm delete" onclick="event.stopPropagation();deleteMessage(${m.id})">Del</button>
+                </div>
             </td>
         </tr>
     `).join('');
