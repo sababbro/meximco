@@ -15,75 +15,6 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
 </head>
 <body>
-    <div id="psychedelic-preloader">
-        <!-- SVG Filter for the "Breathing / Melting" Hallucination Effect -->
-        <svg style="width:0; height:0; position:absolute;" aria-hidden="true">
-            <filter id="hallucination" x="-20%" y="-20%" width="140%" height="140%">
-                <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise">
-                    <!-- Animates the turbulence to make it breathe -->
-                    <animate attributeName="baseFrequency" values="0.015;0.025;0.015" dur="6s" repeatCount="indefinite" />
-                </feTurbulence>
-                <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G">
-                    <animate attributeName="scale" values="5;18;5" dur="6s" repeatCount="indefinite" />
-                </feDisplacementMap>
-            </filter>
-        </svg>
-
-        <!-- Sacred Geometry Halos (Mycelial Network / Aura) -->
-        <div class="sacred-halo halo-1"></div>
-        <div class="sacred-halo halo-2"></div>
-        <div class="sacred-halo halo-3"></div>
-
-        <!-- The Magic Mushroom SVG -->
-        <div class="mushroom-container">
-            <svg class="magic-mushroom" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <!-- Glowing Aura behind mushroom -->
-                <circle cx="50" cy="50" r="40" fill="url(#shroom-glow)" />
-
-                <!-- Gradients -->
-                <defs>
-                    <radialGradient id="shroom-glow" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stop-color="var(--neon-accent)" stop-opacity="0.6"/>
-                        <stop offset="100%" stop-color="var(--neon-accent)" stop-opacity="0"/>
-                    </radialGradient>
-                    <linearGradient id="cap-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#ff3366"/>
-                        <stop offset="100%" stop-color="#9900ff"/>
-                    </linearGradient>
-                    <linearGradient id="stem-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#ffffff"/>
-                        <stop offset="50%" stop-color="#e0e0e0"/>
-                        <stop offset="100%" stop-color="#aaaaaa"/>
-                    </linearGradient>
-                </defs>
-
-                <!-- Mushroom Stem -->
-                <path d="M45,55 Q40,80 35,95 Q50,98 65,95 Q60,80 55,55 Z" fill="url(#stem-grad)" />
-
-                <!-- Mushroom Cap (Curved, organic shape) -->
-                <path d="M10,55 Q50,10 90,55 Q50,65 10,55 Z" fill="url(#cap-grad)" class="mushroom-cap" />
-
-                <!-- Cap Spots (Polka dots) -->
-                <circle cx="30" cy="40" r="5" fill="#fff" opacity="0.8" />
-                <circle cx="50" cy="30" r="7" fill="#fff" opacity="0.9" />
-                <circle cx="70" cy="45" r="4" fill="#fff" opacity="0.7" />
-                <circle cx="20" cy="50" r="3" fill="#fff" opacity="0.6" />
-                <circle cx="80" cy="50" r="3" fill="#fff" opacity="0.6" />
-                <circle cx="45" cy="45" r="4" fill="#fff" opacity="0.8" />
-                <circle cx="60" cy="35" r="5" fill="#fff" opacity="0.8" />
-            </svg>
-
-            <!-- Floating Spores -->
-            <div class="spore spore-1"></div>
-            <div class="spore spore-2"></div>
-            <div class="spore spore-3"></div>
-            <div class="spore spore-4"></div>
-            <div class="spore spore-5"></div>
-        </div>
-
-        <!-- Thematic Loading Text -->
-        <div class="loading-text">Manifesting the Mycelial Network...</div>
-    </div>
     <canvas id="psychedelic-canvas"></canvas>
     <div id="scroll-progress"></div>
     <div class="custom-cursor" id="cursor"></div>
@@ -103,6 +34,7 @@
                 <li><a href="products.html" class="nav-link" data-page="products">Products</a></li>
                 <li><a href="impact.html" class="nav-link" data-page="impact">Impact</a></li>
                 <li><a href="vision.html" class="nav-link" data-page="vision">Vision</a></li>
+                <li><a href="explore.html" class="nav-link" data-page="explore">Explore</a></li>
                 <li><a href="team.html" class="nav-link" data-page="team">Our Team</a></li>
                 <li><a href="contact.html" class="nav-link nav-link-cta">Request a Quote</a></li>
             </ul>
@@ -124,45 +56,87 @@
                 <span class="section-label">Our People</span>
                 <h2 class="section-title">Team Meximco</h2>
             </div>
-            <div class="team-carousel-container animate-on-scroll">
-                <div class="team-carousel-track" id="teamTrack">
-                    <div class="team-flip-card"><div class="team-card-inner"><div class="team-card-front"><div class="team-photo-wrap"><img class="team-photo" src="Team/arefeenraafichairman.png" alt="Arefeen Raafi Ahmed" loading="lazy"></div><div class="team-info-basic"><h3 class="team-name">Arefeen Raafi Ahmed</h3><p class="team-role">Chairman</p></div><div class="flip-hint"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div></div><div class="team-card-back"><h3 class="team-name">Arefeen Raafi Ahmed</h3><p class="team-role">Chairman</p><p class="team-bio">Guiding MEXIMCO's strategic vision and global growth initiatives with a commitment to excellence and innovation.</p></div></div></div>
-                    <div class="team-flip-card"><div class="team-card-inner"><div class="team-card-front"><div class="team-photo-wrap"><img class="team-photo" src="Team/abdur%20rahim%20managing%20director.jpg" alt="Abdur Rahim" loading="lazy"></div><div class="team-info-basic"><h3 class="team-name">Abdur Rahim</h3><p class="team-role">Managing Director</p></div><div class="flip-hint"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div></div><div class="team-card-back"><h3 class="team-name">Abdur Rahim</h3><p class="team-role">Managing Director</p><p class="team-bio">Leading executive operations and ensuring our supply chain delivers premium quality consistently.</p></div></div></div>
-                    <div class="team-flip-card"><div class="team-card-inner"><div class="team-card-front"><div class="team-photo-wrap"><img class="team-photo" src="Team/imtiazahmeddirector.jpg" alt="Imtiaz Ahmed" loading="lazy"></div><div class="team-info-basic"><h3 class="team-name">Imtiaz Ahmed</h3><p class="team-role">Director</p></div><div class="flip-hint"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div></div><div class="team-card-back"><h3 class="team-name">Imtiaz Ahmed</h3><p class="team-role">Director</p><p class="team-bio">Driving operational efficiency and strengthening international market relationships across all sectors.</p></div></div></div>
-                    <div class="team-flip-card"><div class="team-card-inner"><div class="team-card-front"><div class="team-photo-wrap"><img class="team-photo" src="Team/sayed%20Shafayat%20karim%20director.png" alt="Sayed Shafayat Karim" loading="lazy"></div><div class="team-info-basic"><h3 class="team-name">Sayed Shafayat Karim</h3><p class="team-role">Director</p></div><div class="flip-hint"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div></div><div class="team-card-back"><h3 class="team-name">Sayed Shafayat Karim</h3><p class="team-role">Director</p><p class="team-bio">Spearheading corporate strategy and cultivating sustainable farming partnerships globally.</p></div></div></div>
-                    <div class="team-flip-card"><div class="team-card-inner"><div class="team-card-front"><div class="team-photo-wrap"><img class="team-photo" src="Team/md%20ziaul%20haque%20advisor.jpg" alt="MD Ziaul Haque Bhuiyan" loading="lazy"></div><div class="team-info-basic"><h3 class="team-name">MD Ziaul Haque Bhuiyan</h3><p class="team-role">Advisor</p></div><div class="flip-hint"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div></div><div class="team-card-back"><h3 class="team-name">MD Ziaul Haque Bhuiyan</h3><p class="team-role">Advisor</p><p class="team-bio">Providing invaluable strategic and financial advisory to secure long-term global success.</p></div></div></div>
-                    <div class="team-flip-card"><div class="team-card-inner"><div class="team-card-front"><div class="team-photo-wrap"><img class="team-photo" src="Team/kazi%20ashikur%20rasul%20advisor%20.jpg" alt="Kazi Ashikur Rasul" loading="lazy"></div><div class="team-info-basic"><h3 class="team-name">Kazi Ashikur Rasul</h3><p class="team-role">Advisor</p></div><div class="flip-hint"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div></div><div class="team-card-back"><h3 class="team-name">Kazi Ashikur Rasul</h3><p class="team-role">Advisor</p><p class="team-bio">Advising on technological integration and operational best practices across the company.</p></div></div></div>
+            <div class="team-grid animate-on-scroll">
+                <!-- Row 1 -->
+                <div class="team-grid-card">
+                    <div class="tgc-photo-wrap">
+                        <img src="Team/arefeenraafichairman.png" alt="Arefeen Raafi Ahmed" loading="lazy" class="tgc-photo">
+                        <div class="tgc-overlay"></div>
+                    </div>
+                    <div class="tgc-info">
+                        <h3 class="tgc-name">Arefeen Raafi Ahmed</h3>
+                        <p class="tgc-role">Chairman</p>
+                        <p class="tgc-bio">Guiding MEXIMCO's strategic vision and global growth initiatives with a commitment to excellence and innovation.</p>
+                    </div>
                 </div>
-                <div class="team-carousel-controls">
-                    <button class="carousel-btn" id="teamPrev" aria-label="Previous member"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
-                    <div class="team-nav-center"><span class="team-member-counter" id="teamCounter">1 / 6</span><div class="carousel-dots" id="team-dots"></div></div>
-                    <button class="carousel-btn" id="teamNext" aria-label="Next member"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+                <div class="team-grid-card">
+                    <div class="tgc-photo-wrap">
+                        <img src="Team/abdur rahim managing director.jpg" alt="Abdur Rahim" loading="lazy" class="tgc-photo">
+                        <div class="tgc-overlay"></div>
+                    </div>
+                    <div class="tgc-info">
+                        <h3 class="tgc-name">Abdur Rahim</h3>
+                        <p class="tgc-role">Managing Director</p>
+                        <p class="tgc-bio">Leading executive operations and ensuring our supply chain delivers premium quality consistently.</p>
+                    </div>
+                </div>
+                <div class="team-grid-card">
+                    <div class="tgc-photo-wrap">
+                        <img src="Team/imtiazahmeddirector.jpg" alt="Imtiaz Ahmed" loading="lazy" class="tgc-photo">
+                        <div class="tgc-overlay"></div>
+                    </div>
+                    <div class="tgc-info">
+                        <h3 class="tgc-name">Imtiaz Ahmed</h3>
+                        <p class="tgc-role">Director</p>
+                        <p class="tgc-bio">Driving operational efficiency and strengthening international market relationships across all sectors.</p>
+                    </div>
+                </div>
+                <!-- Row 2 -->
+                <div class="team-grid-card">
+                    <div class="tgc-photo-wrap">
+                        <img src="Team/sayed Shafayat karim director.png" alt="Sayed Shafayat Karim" loading="lazy" class="tgc-photo">
+                        <div class="tgc-overlay"></div>
+                    </div>
+                    <div class="tgc-info">
+                        <h3 class="tgc-name">Sayed Shafayat Karim</h3>
+                        <p class="tgc-role">Director</p>
+                        <p class="tgc-bio">Spearheading corporate strategy and cultivating sustainable farming partnerships globally.</p>
+                    </div>
+                </div>
+                <div class="team-grid-card">
+                    <div class="tgc-photo-wrap">
+                        <img src="Team/md ziaul haque advisor.jpg" alt="MD Ziaul Haque Bhuiyan" loading="lazy" class="tgc-photo">
+                        <div class="tgc-overlay"></div>
+                    </div>
+                    <div class="tgc-info">
+                        <h3 class="tgc-name">MD Ziaul Haque Bhuiyan</h3>
+                        <p class="tgc-role">Advisor</p>
+                        <p class="tgc-bio">Providing invaluable strategic and financial advisory to secure long-term global success.</p>
+                    </div>
+                </div>
+                <div class="team-grid-card">
+                    <div class="tgc-photo-wrap">
+                        <img src="Team/kazi ashikur rasul advisor .jpg" alt="Kazi Ashikur Rasul" loading="lazy" class="tgc-photo">
+                        <div class="tgc-overlay"></div>
+                    </div>
+                    <div class="tgc-info">
+                        <h3 class="tgc-name">Kazi Ashikur Rasul</h3>
+                        <p class="tgc-role">Advisor</p>
+                        <p class="tgc-bio">Advising on technological integration and operational best practices across the company.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Innovation & CTA -->
-    <section class="section section-dark" id="research" style="background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('innovation background.png');background-size:cover;background-position:center;">
-        <div class="container">
-            <div class="cta-content animate-on-scroll" style="max-width:800px;margin:0 auto;text-align:center;">
-                <span class="section-label">Innovation</span>
-                <h2 class="section-title" style="color:var(--white);margin-bottom:24px;">Driven by Science. Ready for the Revolution?</h2>
-                <p class="cta-subtitle" style="margin-bottom:40px;color:var(--gray-light);">We collaborate with leading researchers to advance cultivation techniques. Whether you are a farmer, researcher, buyer, or investor, there is a place for you in the MEXIMCO ecosystem.</p>
-                <div class="cta-actions" style="justify-content:center;">
-                    <a href="contact.html" class="btn btn-primary magnetic-btn">Get in Touch</a>
-                    <a href="products.html" class="btn btn-secondary magnetic-btn">View Our Products</a>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand"><div class="nav-logo" style="margin-bottom:24px;pointer-events:none;"><img src="logo.png" alt="MEXIMCO" class="footer-logo" loading="lazy"><div class="nav-brand-text"><span class="brand-name">MEXIMCO</span><span class="brand-sub">A Mushroom Export Import<br>Company Limited</span></div></div><p>Transforming mushrooms into trusted nutrition.</p></div>
                 <div class="footer-links"><h4>Quick Links</h4><ul><li><a href="index.html#about">About Us</a></li><li><a href="products.html">Products</a></li><li><a href="impact.html">Our Impact</a></li><li><a href="vision.html#ecosystem">Our Role</a></li></ul></div>
-                <div class="footer-links"><h4>Explore</h4><ul><li><a href="vision.html">Vision & Roadmap</a></li><li><a href="team.html">Our Team</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+                <div class="footer-links"><h4>Explore</h4><ul><li><a href="vision.html">Vision & Roadmap</a></li><li><a href="explore.html">Blogs & Insights</a></li><li><a href="team.html">Our Team</a></li><li><a href="contact.html">Contact</a></li></ul></div>
                 <div class="footer-contact"><h4>Contact</h4><p>JK Tower 31, Shegunbagicha,<br>Ramna, Dhaka - 1000</p><p><a href="tel:+8801321147011">+880 1321 147 011</a></p><p><a href="mailto:contact@meximcoltd.com">contact@meximcoltd.com</a></p></div>
             </div>
             <div class="footer-bottom"><p>&copy; 2025 MEXIMCO — Mushroom Import Export Company Limited. All rights reserved.</p></div>
@@ -172,39 +146,5 @@
     <a href="https://wa.me/8801321147011" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
     <button class="back-to-top" id="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg></button>
     <script src="script.js"></script>
-    <!-- Preloader Script -->
-    <script>
-        // Use DOMContentLoaded instead of load for slightly faster perceived performance,
-        // but wait for 'load' if you need all images/fonts ready. 
-        // We'll use window.addEventListener('load') to ensure everything is visually ready.
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('psychedelic-preloader');
-            
-            // Artificial delay to ensure the animation is seen (min 2.5 seconds)
-            // In production, you might calculate this based on actual load time
-            setTimeout(() => {
-                // Add the hide class to trigger the CSS transition
-                preloader.classList.add('hidden');
-                
-                // Completely remove from DOM after the transition is done 
-                // (Matches the 0.8s transition time in CSS + a small buffer)
-                setTimeout(() => {
-                    if (preloader.parentNode) {
-                        preloader.parentNode.removeChild(preloader);
-                    }
-                }, 900); 
-                
-            }, 2500); // 2.5 seconds of expanding your mind
-        });
-
-        // Failsafe: if the document is already loaded (e.g. back button cache)
-        if (document.readyState === 'complete') {
-             const preloader = document.getElementById('psychedelic-preloader');
-             if(preloader) {
-                 preloader.classList.add('hidden');
-                 setTimeout(() => preloader.remove(), 900);
-             }
-        }
-    </script>
 </body>
 </html>

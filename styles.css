@@ -1873,10 +1873,114 @@ select,
     .team-flip-card.is-active { transform: scale(1); }
 }
 
+/* ================================================
+   TEAM GRID (replaces carousel)
+   ================================================ */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 48px;
+}
+
+.team-grid-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #111;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.4s ease;
+    cursor: default;
+    aspect-ratio: 3 / 4;
+    display: flex;
+    flex-direction: column;
+}
+
+.team-grid-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7);
+}
+
+.tgc-photo-wrap {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.tgc-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.6s ease;
+    filter: grayscale(20%) contrast(110%);
+}
+
+.team-grid-card:hover .tgc-photo {
+    transform: scale(1.04);
+}
+
+.tgc-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.92) 0%,
+        rgba(0, 0, 0, 0.5) 40%,
+        rgba(0, 0, 0, 0.05) 100%
+    );
+    transition: opacity 0.4s ease;
+}
+
+.tgc-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 28px 24px;
+    z-index: 2;
+}
+
+.tgc-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+    line-height: 1.3;
+}
+
+.tgc-role {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 10px;
+}
+
+.tgc-bio {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.35s ease, max-height 0.35s ease;
+}
+
+.team-grid-card:hover .tgc-bio {
+    opacity: 1;
+    max-height: 80px;
+}
 
 /* ================================================
    RESEARCH SECTION
    ================================================ */
+
 .research-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -3674,7 +3778,7 @@ body {
 
 /* ---- Page Hero Banner (inner pages) ---- */
 .page-hero {
-    min-height: 50vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3876,3 +3980,141 @@ body {
     .product-forms-strip { padding: 24px 20px; }
     .products-grid--compact { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* ================================================
+   EXPLORE PAGE STYLES
+   ================================================ */
+.explore-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    margin-top: 48px;
+}
+
+.explore-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all var(--transition-base);
+}
+
+.explore-card:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+.explore-card-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.explore-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.explore-card:hover .explore-card-image img {
+    transform: scale(1.1);
+}
+
+.explore-category {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    padding: 6px 12px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    z-index: 2;
+}
+
+.explore-card-content {
+    padding: 24px;
+}
+
+.explore-card-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.explore-card-content p {
+    font-size: 14px;
+    color: var(--gray-light);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.explore-read-more {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.explore-card:hover .explore-read-more {
+    transform: translateX(6px);
+}
+
+/* SEO Info Grid */
+.seo-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.seo-info-card {
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    text-align: center;
+    transition: all var(--transition-base);
+}
+
+.seo-info-card:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.seo-icon {
+    color: var(--gray-light);
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.seo-info-card:hover .seo-icon {
+    color: var(--white);
+}
+
+.seo-info-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.seo-info-card p {
+    font-size: 14px;
+    color: var(--gray-light);
+    line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+    .seo-info-grid {
+        grid-template-columns: 1fr;
+    }
+}

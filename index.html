@@ -27,67 +27,6 @@
 </head>
 
 <body>
-    <!-- Psychedelic Preloader -->
-    <div id="psychedelic-preloader">
-        <!-- SVG Filter for the "Breathing / Melting" Hallucination Effect -->
-        <svg style="width:0; height:0; position:absolute;" aria-hidden="true">
-            <filter id="hallucination" x="-20%" y="-20%" width="140%" height="140%">
-                <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise">
-                    <!-- Animates the turbulence to make it breathe -->
-                    <animate attributeName="baseFrequency" values="0.015;0.025;0.015" dur="6s" repeatCount="indefinite" />
-                </feTurbulence>
-                <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G">
-                    <animate attributeName="scale" values="5;18;5" dur="6s" repeatCount="indefinite" />
-                </feDisplacementMap>
-            </filter>
-        </svg>
-
-        <!-- Sacred Geometry Halos (Mycelial Network / Aura) -->
-        <div class="sacred-halo halo-1"></div>
-        <div class="sacred-halo halo-2"></div>
-        <div class="sacred-halo halo-3"></div>
-
-        <!-- The Magic Mushroom -->
-        <div class="mushroom-container">
-            <svg class="magic-mushroom" viewBox="-20 -20 140 140" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="shroomGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#ff00ff" />
-                        <stop offset="50%" stop-color="#00ffff" />
-                        <stop offset="100%" stop-color="#ffff00" />
-                    </linearGradient>
-                    <linearGradient id="stemGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#ffffff" />
-                        <stop offset="100%" stop-color="#999999" />
-                    </linearGradient>
-                </defs>
-                <g filter="url(#hallucination)">
-                    <!-- Stem -->
-                    <path d="M40,55 C40,85 32,95 32,100 L68,100 C68,95 60,85 60,55 Z" fill="url(#stemGrad)" />
-                    <!-- Underskirt / Gills -->
-                    <path d="M15,53 Q50,68 85,53 Q50,60 15,53 Z" fill="#b300b3" opacity="0.8" />
-                    <!-- Cap -->
-                    <path d="M10,55 C10,10 90,10 90,55 Q50,65 10,55 Z" fill="url(#shroomGrad)" />
-                    <!-- Mushroom Spots -->
-                    <circle cx="35" cy="30" r="6" fill="#ffffff" opacity="0.9"/>
-                    <circle cx="65" cy="35" r="5" fill="#ffffff" opacity="0.9"/>
-                    <circle cx="50" cy="20" r="7" fill="#ffffff" opacity="0.9"/>
-                    <circle cx="25" cy="42" r="4" fill="#ffffff" opacity="0.9"/>
-                    <circle cx="75" cy="46" r="4" fill="#ffffff" opacity="0.9"/>
-                </g>
-            </svg>
-        </div>
-
-        <!-- Floating Spores System -->
-        <div class="spores">
-            <div class="spore"></div><div class="spore"></div>
-            <div class="spore"></div><div class="spore"></div>
-            <div class="spore"></div><div class="spore"></div>
-        </div>
-
-        <!-- Thematic Loading Text -->
-        <div class="loading-text">AWAKENING MYCELIUM</div>
-    </div>
 
     <!-- Global Monochrome Gradients -->
     <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
@@ -137,6 +76,7 @@
                 <li><a href="products.html" class="nav-link" data-page="products">Products</a></li>
                 <li><a href="impact.html" class="nav-link" data-page="impact">Impact</a></li>
                 <li><a href="vision.html" class="nav-link" data-page="vision">Vision</a></li>
+                <li><a href="explore.html" class="nav-link" data-page="explore">Explore</a></li>
                 <li><a href="team.html" class="nav-link" data-page="team">Our Team</a></li>
                 <li><a href="contact.html" class="nav-link nav-link-cta">Request a Quote</a></li>
             </ul>
@@ -185,7 +125,7 @@
             </div>
             <div class="hero-showcase-card">
                 <div class="showcase-icon">
-                    <img loading="lazy" src="icons/export certification.png" alt="Export-Ready Quality"
+                    <img loading="lazy" src="icons/certification.png" alt="Export-Ready Quality"
                         style="width: 48px; height: 48px; object-fit: contain; filter: brightness(0) invert(1);">
                 </div>
                 <span class="showcase-label">Export-Ready Quality</span>
@@ -319,6 +259,21 @@
         </div>
     </section>
 
+    <!-- Innovation & CTA -->
+    <section class="section section-dark" id="innovation" style="background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('innovation background.png');background-size:cover;background-position:center;">
+        <div class="container">
+            <div class="cta-content animate-on-scroll" style="max-width:800px;margin:0 auto;text-align:center;">
+                <span class="section-label">Innovation</span>
+                <h2 class="section-title" style="color:var(--white);margin-bottom:24px;">Driven by Science. Ready for the Revolution?</h2>
+                <p class="cta-subtitle" style="margin-bottom:40px;color:var(--gray-light);">We collaborate with leading researchers to advance cultivation techniques. Whether you are a farmer, researcher, buyer, or investor, there is a place for you in the MEXIMCO ecosystem.</p>
+                <div class="cta-actions" style="justify-content:center;">
+                    <a href="contact.html" class="btn btn-primary magnetic-btn">Get in Touch</a>
+                    <a href="products.html" class="btn btn-secondary magnetic-btn">View Our Products</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -348,7 +303,7 @@
                     <h4>Explore</h4>
                     <ul>
                         <li><a href="vision.html">Vision & Roadmap</a></li>
-                        <li><a href="team.html#research">Research</a></li>
+                        <li><a href="explore.html">Blogs & Insights</a></li>
                         <li><a href="team.html">Our Team</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
@@ -359,14 +314,15 @@
                     <p><a href="tel:+8801321147011">+880 1321 147 011</a></p>
                     <p><a href="mailto:contact@meximcoltd.com">contact@meximcoltd.com</a></p>
                     <div class="footer-social">
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <a href="https://www.instagram.com/meximcoltd" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3.81l.19-4h-4V7a1 1 0 0 1 1-1h3z">
-                                </path>
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                             </svg>
                         </a>
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <a href="https://www.linkedin.com/company/meximco-mushroom-export-import-company-limited/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
@@ -402,30 +358,6 @@
     </button>
 
     <script src="script.js"></script>
-    <!-- Psychedelic Preloader Failsafe Script -->
-    <script>
-        function removePreloader() {
-            const preloader = document.getElementById('psychedelic-preloader');
-            if (preloader) {
-                // Guarantee it stays for at least 800ms to show off the cool animation
-                setTimeout(() => {
-                    preloader.classList.add('hidden');
-                    
-                    // Remove the node from the DOM entirely after the 1-second CSS fade finishes
-                    setTimeout(() => {
-                        preloader.remove();
-                    }, 1000); 
-                }, 800); 
-            }
-        }
-
-        // Failsafe: if the document is already loaded, run immediately, otherwise wait for window load.
-        if (document.readyState === 'complete') {
-            removePreloader();
-        } else {
-            window.addEventListener('load', removePreloader);
-        }
-    </script>
 </body>
 
 </html>

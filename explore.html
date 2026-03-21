@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products | MEXIMCO Premium Mushroom Products</title>
-    <meta name="description" content="Explore MEXIMCO's premium mushroom product range — fresh, dried, and powdered Shiitake, Reishi, Lion's Mane, and Wood Ear mushrooms for retail, HoReCa, and export.">
+    <title>Explore | MEXIMCO — Insights, Blogs & Mushroom Wonders</title>
+    <meta name="description" content="Discover the world of mushrooms with MEXIMCO. Articles on health benefits, culinary uses, and sustainable farming of Shiitake, Reishi, and Lion's Mane.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -15,7 +15,6 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
 </head>
 <body>
-
     <canvas id="psychedelic-canvas"></canvas>
     <div id="scroll-progress"></div>
     <div class="custom-cursor" id="cursor"></div>
@@ -32,16 +31,14 @@
                 </div>
             </a>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
             </button>
             <ul class="nav-links" id="nav-links">
                 <li><a href="index.html#about" class="nav-link" data-page="index">About</a></li>
                 <li><a href="products.html" class="nav-link" data-page="products">Products</a></li>
                 <li><a href="impact.html" class="nav-link" data-page="impact">Impact</a></li>
                 <li><a href="vision.html" class="nav-link" data-page="vision">Vision</a></li>
-                <li><a href="explore.html" class="nav-link" data-page="explore">Explore</a></li>
+                <li><a href="explore.html" class="nav-link active" data-page="explore">Explore</a></li>
                 <li><a href="team.html" class="nav-link" data-page="team">Our Team</a></li>
                 <li><a href="contact.html" class="nav-link nav-link-cta">Request a Quote</a></li>
             </ul>
@@ -49,87 +46,83 @@
     </nav>
 
     <!-- Page Hero Banner -->
-    <section class="page-hero" id="page-hero" style="background-image: linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url('fresh mushroom.jpg'); background-size:cover; background-position:center;">
+    <section class="page-hero" id="page-hero" style="background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('Dried Mushrooms.jpg');background-size:cover;background-position:center;">
         <div class="page-hero-content">
-            <span class="section-label">Our Products</span>
-            <h1 class="page-hero-title">Premium Mushroom Products</h1>
-            <p class="page-hero-sub">Fresh · Dried · Powdered — from Bangladesh to the world</p>
+            <span class="section-label">Explore More</span>
+            <h1 class="page-hero-title">Insights into the Myco-World</h1>
+            <p class="page-hero-sub">Knowledge, Health, & Innovation from the Heart of Bangladesh</p>
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section class="section section-light" id="products">
+    <!-- Blog / Articles Section -->
+    <section class="section" id="explore-content">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <span class="section-label">Product Range</span>
-                <h2 class="section-title">Our Full Product Catalogue</h2>
+                <span class="section-label">Knowledge Base</span>
+                <h2 class="section-title">Latest Articles & Blogs</h2>
             </div>
 
-            <!-- Product Forms Strip -->
-            <div class="product-forms-strip animate-on-scroll">
-                <h3 class="strip-title">Product Forms We Offer</h3>
-                <div class="product-forms-row">
-                    <div class="product-form-item">
-                        <div class="pf-icon" style="padding: 0; background: none; border: none;">
-                            <img loading="lazy" src="fresh mushroom.jpg" alt="Fresh Mushrooms"
-                                style="width: 48px; height: 48px; object-fit: cover; border-radius: 8px;">
-                        </div>
-                        <div>
-                            <strong>Fresh Mushrooms</strong>
-                            <span>Harvested at peak freshness ideal for retail, chefs &amp; gourmet consumers. Shelf
-                                life 7-14 days.</span>
-                        </div>
+            <div class="explore-grid">
+                <!-- Blog Post 1 -->
+                <article class="explore-card animate-on-scroll">
+                    <div class="explore-card-image">
+                        <img src="fresh mushroom.jpg" alt="Health Benefits of Shiitake" loading="lazy">
+                        <span class="explore-category">Health & Wellness</span>
                     </div>
-                    <div class="product-form-item">
-                        <div class="pf-icon" style="padding: 0; background: none; border: none;">
-                            <img loading="lazy" src="Dried Mushrooms.jpg" alt="Dried Mushrooms"
-                                style="width: 48px; height: 48px; object-fit: cover; border-radius: 8px;">
-                        </div>
-                        <div>
-                            <strong>Dried Mushrooms</strong>
-                            <span>Flavor-concentrated, preservative-free soups, specialty teas, export. Up to 12
-                                months shelf life.</span>
-                        </div>
+                    <div class="explore-card-content">
+                        <h3 class="explore-card-title">The Superfood Secret: Why Shiitake Mushrooms Rule</h3>
+                        <p>Discover the immune-boosting properties and rich nutritional profile that make Shiitake mushrooms a staple for health-conscious consumers.</p>
+                        <a href="#" class="explore-read-more">Read Full Article →</a>
                     </div>
-                    <div class="product-form-item">
-                        <div class="pf-icon" style="padding: 0; background: none; border: none;">
-                            <img loading="lazy" src="powder mushroom.jpg" alt="Mushroom Powder"
-                                style="width: 48px; height: 48px; object-fit: cover; border-radius: 8px;">
-                        </div>
-                        <div>
-                            <strong>Mushroom Powder</strong>
-                            <span>Nutrient-dense powders for supplements, baking &amp; cosmetics 18-24 month
-                                shelf life.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </article>
 
-            <!-- Image-only product grid -->
-            <div class="products-grid products-grid--compact animate-on-scroll">
-                <div class="product-card product-card--img-only">
-                    <div class="product-image-wrapper">
-                        <img src="Lions Mane Powder Box.png" alt="Lion's Mane Powder" class="product-image" loading="lazy">
-                        <div class="product-img-label">Lion's Mane Powder</div>
+                <!-- Blog Post 2 -->
+                <article class="explore-card animate-on-scroll">
+                    <div class="explore-card-image">
+                        <img src="powder mushroom.jpg" alt="Mushroom Powder Uses" loading="lazy">
+                        <span class="explore-category">Culinary Innovation</span>
                     </div>
+                    <div class="explore-card-content">
+                        <h3 class="explore-card-title">Cooking with Mushroom Powder: Beyond the Soup</h3>
+                        <p>Learn how to incorporate nutrient-dense mushroom powders into baking, smoothies, and gourmet dishes for an umami boost.</p>
+                        <a href="#" class="explore-read-more">Read Full Article →</a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="explore-card animate-on-scroll">
+                    <div class="explore-card-image">
+                        <img src="innovation background.png" alt="Mushroom Farming in Bangladesh" loading="lazy">
+                        <span class="explore-category">Industry News</span>
+                    </div>
+                    <div class="explore-card-content">
+                        <h3 class="explore-card-title">Building the Future of Agriculture in Bangladesh</h3>
+                        <p>How MEXIMCO is leveraging science and centralized processing to transform mushroom farming into a sustainable export industry.</p>
+                        <a href="#" class="explore-read-more">Read Full Article →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEO Information Section -->
+    <section class="section section-light">
+        <div class="container">
+            <div class="seo-info-grid">
+                <div class="seo-info-card animate-on-scroll">
+                    <div class="seo-icon"><i data-lucide="shield-plus"></i></div>
+                    <h3>Medicinal Mushrooms</h3>
+                    <p>Reishi and Lion's Mane are renowned for their neuroprotective and adaptogenic properties. Our powders retain maximum potency through precision processing.</p>
                 </div>
-                <div class="product-card product-card--img-only">
-                    <div class="product-image-wrapper">
-                        <img src="Reishi Powder Box.png" alt="Reishi Powder" class="product-image" loading="lazy">
-                        <div class="product-img-label">Reishi Powder</div>
-                    </div>
+                <div class="seo-info-card animate-on-scroll">
+                    <div class="seo-icon"><i data-lucide="leaf"></i></div>
+                    <h3>Sustainable Farming</h3>
+                    <p>Mushrooms are one of the most eco-friendly crops, requiring minimal water and land. We empower local farmers with sustainable practices.</p>
                 </div>
-                <div class="product-card product-card--img-only">
-                    <div class="product-image-wrapper">
-                        <img src="Shiitake Powder Box.png" alt="Shiitake Powder" class="product-image" loading="lazy">
-                        <div class="product-img-label">Shiitake Powder</div>
-                    </div>
-                </div>
-                <div class="product-card product-card--img-only">
-                    <div class="product-image-wrapper">
-                        <img src="Wood Ear Powder Box.png" alt="Wood Ear Powder" class="product-image" loading="lazy">
-                        <div class="product-img-label">Wood Ear Powder</div>
-                    </div>
+                <div class="seo-info-card animate-on-scroll">
+                    <div class="seo-icon"><i data-lucide="globe"></i></div>
+                    <h3>Global Export Quality</h3>
+                    <p>From our facility in Dhaka, we ensure every batch meets international safety standards for retail, cosmetics, and HoReCa segments.</p>
                 </div>
             </div>
         </div>
@@ -140,10 +133,10 @@
         <div class="container">
             <div class="quote-content animate-on-scroll" style="text-align:center;">
                 <blockquote class="mission-quote" style="font-size:clamp(1.1rem,2.5vw,1.5rem);">
-                    Ready to source premium mushroom products? Let's build a supply partnership that lasts.
+                    Want to learn more about our processing methods or partnership opportunities?
                 </blockquote>
                 <div style="margin-top:32px;">
-                    <a href="contact.html#inquiry" class="btn btn-secondary magnetic-btn">Request a Quote</a>
+                    <a href="contact.html" class="btn btn-secondary magnetic-btn">Get in Touch</a>
                 </div>
             </div>
         </div>
