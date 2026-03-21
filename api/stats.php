@@ -10,6 +10,7 @@ $pdo = getDB();
 $msgs = $pdo->query("SELECT COUNT(*) as total, SUM(CASE WHEN status='unread' THEN 1 ELSE 0 END) as unread FROM messages")->fetch();
 $blogs = $pdo->query("SELECT COUNT(*) as total FROM blogs")->fetch();
 $team = $pdo->query("SELECT COUNT(*) as total FROM team_members")->fetch();
+$products = $pdo->query("SELECT COUNT(*) as total FROM products")->fetch();
 
 echo json_encode([
     'messages' => [
@@ -17,5 +18,6 @@ echo json_encode([
         'unread' => (int)($msgs['unread'] ?? 0)
     ],
     'blogs' => (int)$blogs['total'],
-    'team' => (int)$team['total']
+    'team' => (int)$team['total'],
+    'products' => (int)$products['total']
 ]);

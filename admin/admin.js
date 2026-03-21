@@ -65,7 +65,7 @@ document.getElementById('logoutBtn').addEventListener('click', showLogin);
 const navItems = document.querySelectorAll('.nav-item');
 const sections = document.querySelectorAll('.content-section');
 const pageTitle = document.getElementById('pageTitle');
-const sectionNames = { dashboard: 'Dashboard', inbox: 'Inbox', blogs: 'Blog Manager', team: 'Team Manager' };
+const sectionNames = { dashboard: 'Dashboard', inbox: 'Inbox', blogs: 'Blog Manager', products: 'Product Manager', team: 'Team Manager' };
 
 navItems.forEach(item => {
     item.addEventListener('click', (e) => {
@@ -79,6 +79,7 @@ navItems.forEach(item => {
 
         if (sec === 'inbox') loadMessages();
         if (sec === 'blogs') loadBlogs();
+        if (sec === 'products') loadProducts();
         if (sec === 'team') loadTeam();
 
         document.getElementById('sidebar').classList.remove('open');
@@ -105,6 +106,7 @@ async function loadDashboard() {
         const stats = await res.json();
         document.getElementById('statUnread').textContent = stats.messages?.unread || 0;
         document.getElementById('statBlogs').textContent = stats.blogs || 0;
+        document.getElementById('statProducts').textContent = stats.products || 0;
         document.getElementById('statTeam').textContent = stats.team || 0;
         document.getElementById('inboxBadge').textContent = stats.messages?.unread || 0;
     } catch (e) { console.error('Stats error:', e); }
@@ -432,4 +434,124 @@ window.deleteTeam = async function(id) {
     if (!confirm('Remove this team member?')) return;
     await fetch(API_BASE + EP.team + `?id=${id}`, { method: 'DELETE', headers: authHeaders() });
     loadTeam(); loadDashboard();
+};
+
+// ==================== PRODUCTS ====================
+let allProducts = [];
+
+document.getElementById('newProductBtn').addEventListener('click', () => {
+    document.getElementById('productFormCard').style.display = 'block';
+    document.getElementById('productFormTitle').textContent = 'Add New Product';
+    document.getElementById('productForm').reset();
+    document.getElementById('productId').value = '';
+    document.getElementById('productImagePreview').style.display = 'none';
+});
+document.getElementById('cancelProductBtn').addEventListener('click', () => {
+    document.getElementById('productFormCard').style.display = 'none';
+});
+
+document.getElementById('productImageInput').addEventListener('change', function() {
+    if (this.files[0]) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            const preview = document.getElementById('productImagePreview');
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        };
+        reader.readAsDataURL(this.files[0]);
+    }
+});
+
+document.getElementById('productForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const id = document.getElementById('productId').value;
+    const formData = new FormData();
+    formData.append('name', document.getElementById('productName').value);
+    formData.append('category', document.getElementById('productCategory').value);
+    formData.append('form_type', document.getElementById('productFormType').value);
+    formData.append('description', document.getElementById('productDescription').value);
+    formData.append('benefits', document.getElementById('productBenefits').value);
+    formData.append('shelf_life', document.getElementById('productShelfLife').value);
+    formData.append('price_range', document.getElementById('productPriceRange').value);
+    formData.append('order_index', document.getElementById('productOrder').value);
+    if (document.getElementById('productFeatured').checked) formData.append('is_featured', '1');
+    const imageFile = document.getElementById('productImageInput').files[0];
+    if (imageFile) formData.append('image', imageFile);
+
+    const url = id ? API_BASE + EP.products + `?id=${id}&_method=PUT` : API_BASE + EP.products;
+
+    try {
+        const res = await fetch(url, { method: 'POST', headers: authHeaders(), body: formData });
+        if (res.ok) {
+            document.getElementById('productFormCard').style.display = 'none';
+            loadProducts(); loadDashboard();
+        }
+    } catch (e) { console.error(e); }
+});
+
+async function loadProducts() {
+    try {
+        const res = await fetch(API_BASE + EP.products, { headers: authHeaders() });
+        allProducts = await res.json();
+        renderProducts();
+    } catch (e) { console.error(e); }
+}
+
+function renderProducts() {
+    const grid = document.getElementById('productsGrid');
+    if (allProducts.length === 0) {
+        grid.innerHTML = '<p class="empty-state">No products yet. Click "+ Add Product" to add your first product!</p>';
+        return;
+    }
+    grid.innerHTML = allProducts.map(p => `
+        <div class="blog-admin-card">
+            <div class="card-image">
+                ${p.image_url ? `<img src="${p.image_url}" alt="${p.name}">` : '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:var(--gray-dark)">No Image</div>'}
+            </div>
+            <div class="card-body">
+                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                    <span class="cat">${p.category || ''}</span>
+                    ${p.form_type ? `<span class="cat" style="background:rgba(255,183,77,0.1);color:#ffb74d">${p.form_type}</span>` : ''}
+                    ${p.is_featured == 1 ? '<span class="cat" style="background:rgba(255,215,0,0.15);color:#ffd700">⭐ Featured</span>' : ''}
+                </div>
+                <h4>${p.name}</h4>
+                <p>${p.description ? p.description.substring(0, 100) + '...' : ''}</p>
+                ${p.shelf_life ? `<small style="color:var(--gray)">Shelf: ${p.shelf_life}</small>` : ''}
+                ${p.price_range ? `<small style="color:var(--neon);display:block">${p.price_range}</small>` : ''}
+                <div class="card-actions">
+                    <button class="btn-sm edit" onclick="editProduct(${p.id})">Edit</button>
+                    <button class="btn-sm delete" onclick="deleteProduct(${p.id})">Delete</button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+window.editProduct = function(id) {
+    const p = allProducts.find(x => x.id === id);
+    if (!p) return;
+    document.getElementById('productFormCard').style.display = 'block';
+    document.getElementById('productFormTitle').textContent = 'Edit Product';
+    document.getElementById('productId').value = p.id;
+    document.getElementById('productName').value = p.name;
+    document.getElementById('productCategory').value = p.category || '';
+    document.getElementById('productFormType').value = p.form_type || '';
+    document.getElementById('productDescription').value = p.description || '';
+    document.getElementById('productBenefits').value = p.benefits || '';
+    document.getElementById('productShelfLife').value = p.shelf_life || '';
+    document.getElementById('productPriceRange').value = p.price_range || '';
+    document.getElementById('productFeatured').checked = p.is_featured == 1;
+    document.getElementById('productOrder').value = p.order_index || 0;
+    if (p.image_url) {
+        const preview = document.getElementById('productImagePreview');
+        preview.src = p.image_url;
+        preview.style.display = 'block';
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+window.deleteProduct = async function(id) {
+    if (!confirm('Delete this product?')) return;
+    await fetch(API_BASE + EP.products + `?id=${id}`, { method: 'DELETE', headers: authHeaders() });
+    loadProducts(); loadDashboard();
 };

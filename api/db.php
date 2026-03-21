@@ -99,7 +99,7 @@ function getBody() {
 
 // Ensure upload directories exist
 function ensureUploadDirs() {
-    $dirs = [UPLOAD_DIR, UPLOAD_DIR . 'blogs/', UPLOAD_DIR . 'team/'];
+    $dirs = [UPLOAD_DIR, UPLOAD_DIR . 'blogs/', UPLOAD_DIR . 'team/', UPLOAD_DIR . 'products/'];
     foreach ($dirs as $dir) {
         if (!is_dir($dir)) mkdir($dir, 0755, true);
     }

@@ -42,6 +42,22 @@ $queries = [
         cv_url VARCHAR(500),
         order_index INT DEFAULT 0,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4",
+
+    // Products table
+    "CREATE TABLE IF NOT EXISTS products (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        category VARCHAR(100),
+        form_type VARCHAR(100),
+        description TEXT,
+        benefits TEXT,
+        shelf_life VARCHAR(100),
+        image_url VARCHAR(500),
+        price_range VARCHAR(100),
+        is_featured TINYINT(1) DEFAULT 0,
+        order_index INT DEFAULT 0,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4"
 ];
 

@@ -1,8 +1,6 @@
 // ================================================
 // MEXIMCO ADMIN — API CONFIGURATION
 // ================================================
-// PHP API endpoints — these work on Namecheap hosting
-
 const CONFIG = {
     API_URL: window.location.origin,
     endpoints: {
@@ -11,6 +9,7 @@ const CONFIG = {
         stats:    '/api/stats.php',
         messages: '/api/messages.php',
         blogs:    '/api/blogs.php',
-        team:     '/api/team.php'
+        team:     '/api/team.php',
+        products: '/api/products.php'
     }
 };
