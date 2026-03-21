@@ -158,12 +158,8 @@
             message: document.getElementById('message').value
         };
 
-        const API_BASE = window.location.hostname === 'localhost' 
-            ? window.location.origin 
-            : 'https://meximco-admin.onrender.com';  // UPDATE after deployment
-
         try {
-            const res = await fetch(API_BASE + '/api/messages', {
+            const res = await fetch('/api/messages.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)

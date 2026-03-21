@@ -1,12 +1,16 @@
 // ================================================
 // MEXIMCO ADMIN — API CONFIGURATION
 // ================================================
-// Change this URL after deploying the backend to Render/Railway
-// For local development: 'http://localhost:3001'
-// For production: 'https://your-app-name.onrender.com'
+// PHP API endpoints — these work on Namecheap hosting
 
 const CONFIG = {
-    API_URL: window.location.hostname === 'localhost' 
-        ? window.location.origin 
-        : 'https://meximco-admin.onrender.com'  // ← UPDATE THIS after Render deployment
+    API_URL: window.location.origin,
+    endpoints: {
+        login:    '/api/auth.php?action=login',
+        verify:   '/api/auth.php?action=verify',
+        stats:    '/api/stats.php',
+        messages: '/api/messages.php',
+        blogs:    '/api/blogs.php',
+        team:     '/api/team.php'
+    }
 };

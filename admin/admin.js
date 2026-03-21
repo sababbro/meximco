@@ -1,7 +1,9 @@
 // ================================================
 // MEXIMCO ADMIN — HYDROSPHERE CONTROL PANEL JS
+// (PHP Backend Version)
 // ================================================
-const API = (typeof CONFIG !== 'undefined' ? CONFIG.API_URL : window.location.origin) + '/api';
+const API_BASE = CONFIG.API_URL;
+const EP = CONFIG.endpoints;
 let token = localStorage.getItem('meximco_token');
 
 // ==================== AUTH ====================
@@ -25,7 +27,7 @@ function showLogin() {
 
 // Check existing token
 if (token) {
-    fetch(API + '/verify', { headers: { Authorization: 'Bearer ' + token } })
+    fetch(API_BASE + EP.verify, { headers: { Authorization: 'Bearer ' + token } })
         .then(r => { if (r.ok) showAdmin(); else showLogin(); })
         .catch(() => showLogin());
 } else {
@@ -38,7 +40,7 @@ loginForm.addEventListener('submit', async (e) => {
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
     try {
-        const res = await fetch(API + '/login', {
+        const res = await fetch(API_BASE + EP.login, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
@@ -53,7 +55,7 @@ loginForm.addEventListener('submit', async (e) => {
             loginError.textContent = data.error || 'Login failed';
         }
     } catch (err) {
-        loginError.textContent = 'Server not reachable. Start the server first.';
+        loginError.textContent = 'Server error. Please try again.';
     }
 });
 
@@ -79,12 +81,10 @@ navItems.forEach(item => {
         if (sec === 'blogs') loadBlogs();
         if (sec === 'team') loadTeam();
 
-        // Close sidebar on mobile
         document.getElementById('sidebar').classList.remove('open');
     });
 });
 
-// Sidebar toggle
 document.getElementById('sidebarToggle').addEventListener('click', () => {
     document.getElementById('sidebar').classList.toggle('open');
 });
@@ -101,7 +101,7 @@ function formatDate(d) {
 // ==================== DASHBOARD ====================
 async function loadDashboard() {
     try {
-        const res = await fetch(API + '/stats', { headers: authHeaders() });
+        const res = await fetch(API_BASE + EP.stats, { headers: authHeaders() });
         const stats = await res.json();
         document.getElementById('statUnread').textContent = stats.messages?.unread || 0;
         document.getElementById('statBlogs').textContent = stats.blogs || 0;
@@ -111,7 +111,7 @@ async function loadDashboard() {
 
     // Recent messages
     try {
-        const res = await fetch(API + '/messages', { headers: authHeaders() });
+        const res = await fetch(API_BASE + EP.messages, { headers: authHeaders() });
         const msgs = await res.json();
         const container = document.getElementById('dashboardMessages');
         if (msgs.length === 0) {
@@ -125,7 +125,7 @@ async function loadDashboard() {
 
     // Recent blogs
     try {
-        const res = await fetch(API + '/blogs', { headers: authHeaders() });
+        const res = await fetch(API_BASE + EP.blogs, { headers: authHeaders() });
         const blogs = await res.json();
         const container = document.getElementById('dashboardBlogs');
         if (blogs.length === 0) {
@@ -148,7 +148,7 @@ let allMessages = [];
 
 async function loadMessages() {
     try {
-        const res = await fetch(API + '/messages', { headers: authHeaders() });
+        const res = await fetch(API_BASE + EP.messages, { headers: authHeaders() });
         allMessages = await res.json();
         renderMessages();
     } catch (e) { console.error(e); }
@@ -191,7 +191,6 @@ window.openMessage = function(id) {
     document.getElementById('modalReplyBtn').href = `mailto:${m.email}?subject=RE: MEXIMCO Inquiry`;
     document.getElementById('modalDeleteBtn').onclick = () => { deleteMessage(m.id); document.getElementById('messageModal').style.display = 'none'; };
     document.getElementById('messageModal').style.display = 'flex';
-    // Mark as read
     if (m.status === 'unread') markRead(m.id);
 };
 
@@ -200,13 +199,17 @@ document.getElementById('closeModal').addEventListener('click', () => {
 });
 
 window.markRead = async function(id) {
-    await fetch(API + `/messages/${id}`, { method: 'PATCH', headers: { ...authHeaders(), 'Content-Type': 'application/json' }, body: JSON.stringify({ status: 'read' }) });
+    await fetch(API_BASE + EP.messages + `?id=${id}`, {
+        method: 'PATCH',
+        headers: { ...authHeaders(), 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'read' })
+    });
     loadMessages(); loadDashboard();
 };
 
 window.deleteMessage = async function(id) {
     if (!confirm('Delete this message?')) return;
-    await fetch(API + `/messages/${id}`, { method: 'DELETE', headers: authHeaders() });
+    await fetch(API_BASE + EP.messages + `?id=${id}`, { method: 'DELETE', headers: authHeaders() });
     loadMessages(); loadDashboard();
 };
 
@@ -224,7 +227,6 @@ document.getElementById('cancelBlogBtn').addEventListener('click', () => {
     document.getElementById('blogFormCard').style.display = 'none';
 });
 
-// Image preview
 document.getElementById('blogImageInput').addEventListener('change', function() {
     if (this.files[0]) {
         const reader = new FileReader();
@@ -249,11 +251,10 @@ document.getElementById('blogForm').addEventListener('submit', async (e) => {
     const imageFile = document.getElementById('blogImageInput').files[0];
     if (imageFile) formData.append('image', imageFile);
 
-    const url = id ? API + `/blogs/${id}` : API + '/blogs';
-    const method = id ? 'PUT' : 'POST';
+    const url = id ? API_BASE + EP.blogs + `?id=${id}&_method=PUT` : API_BASE + EP.blogs;
 
     try {
-        const res = await fetch(url, { method, headers: authHeaders(), body: formData });
+        const res = await fetch(url, { method: 'POST', headers: authHeaders(), body: formData });
         if (res.ok) {
             document.getElementById('blogFormCard').style.display = 'none';
             loadBlogs(); loadDashboard();
@@ -263,7 +264,7 @@ document.getElementById('blogForm').addEventListener('submit', async (e) => {
 
 async function loadBlogs() {
     try {
-        const res = await fetch(API + '/blogs', { headers: authHeaders() });
+        const res = await fetch(API_BASE + EP.blogs, { headers: authHeaders() });
         allBlogs = await res.json();
         renderBlogs();
     } catch (e) { console.error(e); }
@@ -314,7 +315,7 @@ window.editBlog = function(id) {
 
 window.deleteBlog = async function(id) {
     if (!confirm('Delete this blog post?')) return;
-    await fetch(API + `/blogs/${id}`, { method: 'DELETE', headers: authHeaders() });
+    await fetch(API_BASE + EP.blogs + `?id=${id}`, { method: 'DELETE', headers: authHeaders() });
     loadBlogs(); loadDashboard();
 };
 
@@ -333,7 +334,6 @@ document.getElementById('cancelTeamBtn').addEventListener('click', () => {
     document.getElementById('teamFormCard').style.display = 'none';
 });
 
-// Photo preview
 document.getElementById('teamPhotoInput').addEventListener('change', function() {
     if (this.files[0]) {
         const reader = new FileReader();
@@ -346,7 +346,6 @@ document.getElementById('teamPhotoInput').addEventListener('change', function() 
     }
 });
 
-// CV name display
 document.getElementById('teamCvInput').addEventListener('change', function() {
     if (this.files[0]) {
         const nameEl = document.getElementById('teamCvName');
@@ -368,11 +367,10 @@ document.getElementById('teamForm').addEventListener('submit', async (e) => {
     if (photoFile) formData.append('photo', photoFile);
     if (cvFile) formData.append('cv', cvFile);
 
-    const url = id ? API + `/team/${id}` : API + '/team';
-    const method = id ? 'PUT' : 'POST';
+    const url = id ? API_BASE + EP.team + `?id=${id}&_method=PUT` : API_BASE + EP.team;
 
     try {
-        const res = await fetch(url, { method, headers: authHeaders(), body: formData });
+        const res = await fetch(url, { method: 'POST', headers: authHeaders(), body: formData });
         if (res.ok) {
             document.getElementById('teamFormCard').style.display = 'none';
             loadTeam(); loadDashboard();
@@ -382,7 +380,7 @@ document.getElementById('teamForm').addEventListener('submit', async (e) => {
 
 async function loadTeam() {
     try {
-        const res = await fetch(API + '/team', { headers: authHeaders() });
+        const res = await fetch(API_BASE + EP.team, { headers: authHeaders() });
         allTeam = await res.json();
         renderTeam();
     } catch (e) { console.error(e); }
@@ -432,6 +430,6 @@ window.editTeam = function(id) {
 
 window.deleteTeam = async function(id) {
     if (!confirm('Remove this team member?')) return;
-    await fetch(API + `/team/${id}`, { method: 'DELETE', headers: authHeaders() });
+    await fetch(API_BASE + EP.team + `?id=${id}`, { method: 'DELETE', headers: authHeaders() });
     loadTeam(); loadDashboard();
 };
