@@ -14,7 +14,10 @@ const PORT = process.env.PORT || 3001;
 // Database
 const pool = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
 
-// Middleware
+app.use((req, res, next) => {
+    console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+    next();
+});
 app.use(cors({
     origin: ['http://localhost:3001', 'https://www.meximcoltd.com', 'https://meximcoltd.com', 'http://www.meximcoltd.com', 'http://meximcoltd.com'],
     credentials: true
@@ -27,7 +30,7 @@ app.use('/admin', express.static(path.join(__dirname, '..', 'admin')));
 // Ensure uploads folder
 const uploadsDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
-['blogs', 'team'].forEach(sub => {
+['blogs', 'team', 'products'].forEach(sub => {
     const d = path.join(uploadsDir, sub);
     if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true });
 });
@@ -235,6 +238,60 @@ app.delete('/api/team/:id', authMiddleware, async (req, res) => {
     }
 });
 
+// ==================== PRODUCTS ====================
+// Public: list products
+app.get('/api/products', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM products ORDER BY order_index ASC, created_at DESC');
+        res.json(result.rows);
+    } catch (e) {
+        res.status(500).json({ error: 'Failed to fetch products' });
+    }
+});
+
+// Admin: add product
+app.post('/api/products', authMiddleware, upload.single('image'), async (req, res) => {
+    try {
+        const { name, category, form_type, description, benefits, shelf_life, price_range, order_index, is_featured } = req.body;
+        const image_url = req.file ? `/uploads/products/${req.file.filename}` : null;
+        const result = await pool.query(
+            'INSERT INTO products (name, category, form_type, description, benefits, shelf_life, image_url, price_range, order_index, is_featured) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *',
+            [name, category, form_type, description, benefits, shelf_life, image_url, price_range, parseInt(order_index) || 0, is_featured === '1' || is_featured === 'true']
+        );
+        res.json(result.rows[0]);
+    } catch (e) {
+        console.error('Product create error:', e);
+        res.status(500).json({ error: 'Failed to create product' });
+    }
+});
+
+// Admin: update product
+app.put('/api/products/:id', authMiddleware, upload.single('image'), async (req, res) => {
+    try {
+        const { name, category, form_type, description, benefits, shelf_life, price_range, order_index, is_featured } = req.body;
+        let image_url = req.body.existing_image;
+        if (req.file) image_url = `/uploads/products/${req.file.filename}`;
+        await pool.query(
+            'UPDATE products SET name=$1, category=$2, form_type=$3, description=$4, benefits=$5, shelf_life=$6, image_url=$7, price_range=$8, order_index=$9, is_featured=$10 WHERE id=$11',
+            [name, category, form_type, description, benefits, shelf_life, image_url, price_range, parseInt(order_index) || 0, is_featured === '1' || is_featured === 'true', req.params.id]
+        );
+        res.json({ success: true });
+    } catch (e) {
+        console.error('Product update error:', e);
+        res.status(500).json({ error: 'Failed to update product' });
+    }
+});
+
+// Admin: delete product
+app.delete('/api/products/:id', authMiddleware, async (req, res) => {
+    try {
+        await pool.query('DELETE FROM products WHERE id=$1', [req.params.id]);
+        res.json({ success: true });
+    } catch (e) {
+        res.status(500).json({ error: 'Failed to delete product' });
+    }
+});
+
 // ==================== FILE UPLOAD ====================
 app.post('/api/upload/:type', authMiddleware, upload.single('file'), async (req, res) => {
     if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
@@ -247,10 +304,12 @@ app.get('/api/stats', authMiddleware, async (req, res) => {
         const msgs = await pool.query('SELECT COUNT(*) as total, COUNT(*) FILTER (WHERE status=\'unread\') as unread FROM messages');
         const blogs = await pool.query('SELECT COUNT(*) as total FROM blogs');
         const team = await pool.query('SELECT COUNT(*) as total FROM team_members');
+        const products = await pool.query('SELECT COUNT(*) as total FROM products');
         res.json({
             messages: { total: parseInt(msgs.rows[0].total), unread: parseInt(msgs.rows[0].unread) },
             blogs: parseInt(blogs.rows[0].total),
-            team: parseInt(team.rows[0].total)
+            team: parseInt(team.rows[0].total),
+            products: parseInt(products.rows[0].total)
         });
     } catch (e) {
         res.status(500).json({ error: 'Failed to fetch stats' });

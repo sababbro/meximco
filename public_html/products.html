@@ -105,33 +105,40 @@
                 </div>
             </div>
 
-            <!-- Image-only product grid -->
-            <div class="products-grid products-grid--compact animate-on-scroll">
-                <div class="product-card product-card--img-only">
-                    <div class="product-image-wrapper">
-                        <img src="Lions Mane Powder Box.png" alt="Lion's Mane Powder" class="product-image" loading="lazy">
-                        <div class="product-img-label">Lion's Mane Powder</div>
-                    </div>
-                </div>
-                <div class="product-card product-card--img-only">
-                    <div class="product-image-wrapper">
-                        <img src="Reishi Powder Box.png" alt="Reishi Powder" class="product-image" loading="lazy">
-                        <div class="product-img-label">Reishi Powder</div>
-                    </div>
-                </div>
-                <div class="product-card product-card--img-only">
-                    <div class="product-image-wrapper">
-                        <img src="Shiitake Powder Box.png" alt="Shiitake Powder" class="product-image" loading="lazy">
-                        <div class="product-img-label">Shiitake Powder</div>
-                    </div>
-                </div>
-                <div class="product-card product-card--img-only">
-                    <div class="product-image-wrapper">
-                        <img src="Wood Ear Powder Box.png" alt="Wood Ear Powder" class="product-image" loading="lazy">
-                        <div class="product-img-label">Wood Ear Powder</div>
-                    </div>
+            <!-- Dynamic product grid -->
+            <div id="dynamic-products-grid" class="products-grid products-grid--compact animate-on-scroll">
+                <!-- Loading placeholder -->
+                <div class="loading-products" style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--gray);">
+                    <p>Loading premium products...</p>
                 </div>
             </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', async () => {
+                    const grid = document.getElementById('dynamic-products-grid');
+                    try {
+                        const response = await fetch('/api/products');
+                        const products = await response.json();
+                        
+                        if (products.length === 0) {
+                            grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--gray);">No products found in our current catalogue.</p>';
+                            return;
+                        }
+
+                        grid.innerHTML = products.map(p => `
+                            <div class="product-card product-card--img-only">
+                                <div class="product-image-wrapper">
+                                    <img src="${p.image_url || 'logo.png'}" alt="${p.name}" class="product-image" loading="lazy">
+                                    <div class="product-img-label">${p.name}</div>
+                                </div>
+                            </div>
+                        `).join('');
+                    } catch (error) {
+                        console.error('Error loading products:', error);
+                        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--gray);">Unable to load products. Please check back later.</p>';
+                    }
+                });
+            </script>
         </div>
     </section>
 

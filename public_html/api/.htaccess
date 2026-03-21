@@ -1,0 +1,32 @@
+# ==========================================================
+# MEXIMCO API — ENDPOINT ROUTING
+# ==========================================================
+# This maps clean URLs requested by the frontend
+# to the corresponding PHP backend scripts.
+# ==========================================================
+
+RewriteEngine On
+
+# 1. AUTH ENDPOINTS
+RewriteRule ^login$ auth.php?action=login [QSA,L]
+RewriteRule ^verify$ auth.php?action=verify [QSA,L]
+
+# 2. STATS ENDPOINTS
+RewriteRule ^stats$ stats.php [QSA,L]
+
+# 3. CONTENT ENDPOINTS
+RewriteRule ^blogs$ blogs.php [QSA,L]
+RewriteRule ^products$ products.php [QSA,L]
+RewriteRule ^team$ team.php [QSA,L]
+RewriteRule ^messages$ messages.php [QSA,L]
+
+# 4. SETUP ENDPOINT (Optional - keep protected)
+RewriteRule ^setup$ setup.php [QSA,L]
+
+# ==========================================================
+# Security: Block direct access to db.php
+# ==========================================================
+<Files "db.php">
+    Order allow,deny
+    Deny from all
+</Files>

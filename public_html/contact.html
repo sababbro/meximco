@@ -159,7 +159,9 @@
         };
 
         try {
-            const res = await fetch('/api/messages.php', {
+            // URL points to /api/messages which works with Node.js local test
+            // We can add a .php fallback for Namecheap later or use .htaccess
+            const res = await fetch('/api/messages', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)

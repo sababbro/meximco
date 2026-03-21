@@ -1,0 +1,35 @@
+# ==========================================================
+# MEXIMCO GLOBAL SECURITY — PROJECT ROOT PROTECTION
+# ==========================================================
+# This file protects sensitive files if the entire project
+# is uploaded to a web-accessible directory.
+# ==========================================================
+
+# 1. Disable directory listing for everything
+Options -Indexes
+
+# 2. Block access to sensitive system files and folders
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Block access to git, env, and config files
+    RewriteRule ^(?:\.git|\.env|package(?:-lock)?\.json|composer\.(?:json|lock))$ - [F,L]
+
+    # Block access to private logic folders
+    RewriteRule ^(?:server|node_modules|tmp|temp)\/.*$ - [F,L]
+    
+    # Optional: If you want to automatically redirect visitors to public_html 
+    # (Only needed if your host doesn't let you change the "Document Root")
+    # RewriteCond %{REQUEST_URI} !^/public_html/
+    # RewriteRule ^(.*)$ public_html/$1 [L]
+</IfModule>
+
+# 3. Protect dot files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# 4. Custom Error Documents (Optional)
+# ErrorDocument 403 /public_html/index.html
+# ErrorDocument 404 /public_html/index.html

@@ -1,0 +1,40 @@
+# ==========================================================
+# MEXIMCO — PROJECT GITIGNORE
+# ==========================================================
+# This protects your repository from private data, 
+# unnecessary files, and deployment artifacts.
+
+# 1. Private / Secrets
+.env
+*.env
+auth.secret
+config.secret.js
+
+# 2. Deployment Artifacts (Don't push these to Git)
+meximco-deploy.zip
+dist/
+build/
+
+# 3. Development / Local Environment
+node_modules/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 4. Storage & Temporary Data
+tmp/
+temp/
+public_html/uploads/**/*
+!public_html/uploads/.gitkeep
+
+# 5. OS files
+.directory
+desktop.ini
+
+# ==========================================================
+# MEXIMCO Trajectory: Mission Control 🛸
+# ==========================================================

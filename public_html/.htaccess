@@ -1,0 +1,39 @@
+# ==========================================================
+# MEXIMCO PUBLIC WEB ROOT PROTECTION
+# ==========================================================
+# This file lives in public_html/ and is the first
+# entry point for visitors. It should only expose 
+# what's needed for the website logic.
+# ==========================================================
+
+# 1. Disable indexing for visitor-facing folders
+Options -Indexes
+
+# 2. Allow only PHP and essential files to be callable
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Ensure that any call to /api/... is routed to the PHP files correctly
+    # (By default rewrite rules are allowed here, no changes needed for PHP)
+    
+    # 3. Block any accidental sensitive files or temporary things
+    RewriteRule ^(?:.*\/)?\.(?:git|env|bak|log|tmp|temp)$ - [F,L]
+</IfModule>
+
+# 4. Correct MIME Types
+AddType image/webp .webp
+AddType image/x-icon .ico
+AddType image/png .png
+AddType image/jpeg .jpg .jpeg
+
+# 5. Cross-Origin for API — specifically allow fonts/images from other origins if needed
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>
+
+# 6. Default index configuration
+DirectoryIndex index.html index.php
+
+# ==========================================================
+# MEXIMCO GLOBAL Trajectory: Manifest Destiny. 🧬
+# ==========================================================
