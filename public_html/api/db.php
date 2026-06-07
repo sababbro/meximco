@@ -5,13 +5,13 @@
 // Configure these with your Namecheap MySQL credentials
 // Find them in cPanel → MySQL Databases
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'YOUR_CPANEL_USER_meximco');  // Usually: cpaneluser_dbname
-define('DB_USER', 'YOUR_CPANEL_USER_admin');     // Usually: cpaneluser_dbuser
-define('DB_PASS', 'YOUR_DB_PASSWORD');           // The password you set in cPanel
-define('JWT_SECRET', 'meximco-admin-secret-2025-change-this');
-define('ADMIN_EMAIL', 'admin@meximcoltd.com');
-define('ADMIN_PASSWORD', 'meximco2025');  // Change this!
+define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
+define('DB_NAME', getenv('DB_NAME') ?: 'YOUR_CPANEL_USER_meximco');  // Usually: cpaneluser_dbname
+define('DB_USER', getenv('DB_USER') ?: 'YOUR_CPANEL_USER_admin');     // Usually: cpaneluser_dbuser
+define('DB_PASS', getenv('DB_PASS') ?: 'YOUR_DB_PASSWORD');           // The password you set in cPanel
+define('JWT_SECRET', getenv('JWT_SECRET') ?: 'meximco-admin-secret-2025-change-this');
+define('ADMIN_EMAIL', getenv('ADMIN_EMAIL') ?: 'admin@meximcoltd.com');
+define('ADMIN_PASSWORD', getenv('ADMIN_PASSWORD') ?: 'meximco2025');  // Change this!
 define('UPLOAD_DIR', __DIR__ . '/../uploads/');
 
 // CORS — allow your domain

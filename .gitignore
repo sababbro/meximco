@@ -9,6 +9,9 @@
 *.env
 auth.secret
 config.secret.js
+.env.*
+!.env.example
+*.log
 
 # 2. Deployment Artifacts (Don't push these to Git)
 meximco-deploy.zip
